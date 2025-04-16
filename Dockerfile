@@ -1,24 +1,18 @@
-FROM ubuntu:latest
-LABEL authors="shane"
+FROM python:3.8
+LABEL authors="notsus"
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
 
-ENV HOME /root
-WORKDIR /root
+#This is for creating a directory which will store the logs.
+RUN mkdir -p /app/logs
 
-COPY ./requirements.txt ./requirements.txt
-COPY ./server.py ./server.py
-COPY ./public ./public
-COPY ./util ./util
+COPY . .
 
-RUN pip3 install -r requirements.txt && apt-get update && apt-get install -y ffmpeg
-RUN pip install ffmpeg-python
-
-EXPOSE 8000
+RUN pip3 install -r requirements.txt
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 
-CMD /wait && python3 -u server.py
+EXPOSE 8000
 
-# docker compose -f docker-compose.db-only.yml up --build
+CMD /wait && python3 -u server.py
