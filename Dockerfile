@@ -1,6 +1,7 @@
 FROM python:3.8
 LABEL authors="notsus"
 
+ENV HOME /root
 WORKDIR /app
 
 #This is for creating a directory which will store the logs.

@@ -1,0 +1,14 @@
+h1 {
+    font-size: 64px;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+label {
+    font-size: 16px;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+input {
+    font-size: 16px;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    margin: 8px;
+}
+

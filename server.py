@@ -1,46 +1,77 @@
 import logging
 from logging.config import dictConfig
-from flask import Flask
+
+import bcrypt
+from flask import Flask, redirect, render_template, request, jsonify
+
+from api.db import users
 
 # Setting up logging details.
-dictConfig({
-    'version': 1,
-    'formatters': {
-        'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-        },
-        'request': {
-        'format': '[%(asctime)s] %(remote_addr)s requested %(url)s\n%(levelname)s in %(module)s: %(message)s',
-        }
-    },
-    'handlers': {
-    'file': {
-        'class': 'logging.FileHandler',
-        'filename': 'logs/app.log',
-        'formatter': 'default',
-        'level': 'INFO'
-        },
-    'console': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://sys.stdout',
-        'formatter': 'default',
-        'level': 'INFO'
-        }
-    },
-    'root': {
-        'level': 'INFO',
-        'handlers': ['file', 'console']
-    }
-
-})
+# dictConfig({
+#     'version': 1,
+#     'formatters': {
+#         'default': {
+#         'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+#         },
+#         'request': {
+#         'format': '[%(asctime)s] %(remote_addr)s requested %(url)s\n%(levelname)s in %(module)s: %(message)s',
+#         }
+#     },
+#     'handlers': {
+#     'file': {
+#         'class': 'logging.FileHandler',
+#         'filename': 'logs/app.log',
+#         'formatter': 'default',
+#         'level': 'INFO'
+#         },
+#     'console': {
+#         'class': 'logging.StreamHandler',
+#         'stream': 'ext://sys.stdout',
+#         'formatter': 'default',
+#         'level': 'INFO'
+#         }
+#     },
+#     'root': {
+#         'level': 'INFO',
+#         'handlers': ['file', 'console']
+#     }
+#
+# })
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def index():
+    return redirect("/register")
+
+@app.route('/register', methods=['POST'])
+def register_user():
+    username = request.form['username']
+    password = request.form['password']
+    if len(password) < 8:
+        return jsonify({"message":"Password must be at least 8 characters long"}), 400
+    elif not any(a.isdigit() for a in password):
+        return jsonify({"message":"Password must contain at least one digit"}), 400
+    elif not any(a.isupper() for a in password):
+        return jsonify({"message":"Password must contain at least one uppercase letter"}), 400
+    elif not any(a.islower() for a in password):
+        return jsonify({"message":"Password must contain at least one lowercase letter"}), 400
+    elif not any (a in ["$", "@", "!", "%", "#"] for a in password):
+        return jsonify({"message":"Password must contain at least one special character"}), 400
+    if users.find_one({"username":username}) is not None:
+        return jsonify({"message": "Username taken"}), 400
+    users.insert_one({"username":username, "password":bcrypt.hashpw(password.encode(), bcrypt.gensalt())})
+    return jsonify({"message":"Registered successfully."})
+
+
+@app.route("/register", methods=['GET'])
+def serve_register():
+    return render_template('register.html')
 
 #For logging and giving errors, use format: 
 # app.logger.info() [Whatever you want to show as an error]
 # abort(401) [The status code, if needed]
 
 #Use this for development, if required.
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=8080, debug=True)
+if __name__ == "__main__":
+     app.run(host="0.0.0.0", port=5000, debug=True)
