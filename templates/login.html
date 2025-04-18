@@ -1,56 +1,46 @@
 {% extends "base.html" %}
 
 {% block head %}
-<title>Register</title>
+<title>Login</title>
 <style>
     body {
         background-image: url("{{ url_for('static', filename='assets/NotSus.jpg') }}");
-        background-size: 50%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center top;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
         padding-top: 60px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: white;
-        margin: 0;
     }
 
-    .login-link {
+    .register-link {
         text-align: center;
         margin-top: 15px;
         color: #ccc;
         font-size: 14px;
     }
 
-    .login-link a {
+    .register-link a {
         color: #FFA500;
         text-decoration: none;
         font-weight: bold;
     }
 
-    .login-link a:hover {
+    .register-link a:hover {
         text-decoration: underline;
-    }
-
-
-    .game-title {
-        text-align: right;
-        font-size: 48px;
-        font-weight: bold;
-        color: #FFA500;
-        /* orange-yellow */
-        margin: 30px 50px 0 0;
     }
 
     .form-container {
         background-color: rgba(0, 0, 0, 0.7);
         width: 400px;
-        margin: 240px auto 40px 875px; 
+        margin: 240px auto 40px 875px;
         border-radius: 10px;
         padding: 30px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
-
 
     .form-container h2 {
         color: #FFA500;
@@ -101,42 +91,40 @@
 
 {% block body %}
 <div class="form-container">
-    <h2>Register</h2>
-    <form id="registerForm">
+    <h2>Login</h2>
+    <form id="loginForm">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
 
-        <input type="submit" value="Register">
-        <p class="login-link">Already have an account? <a href="/login">Log in</a></p>
-
+        <input type="submit" value="Login">
+        <p class="register-link">Don't have an account? <a href="/register">Register</a></p>
     </form>
     <div id="responseMessage"></div>
 </div>
 
 <script>
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
         e.preventDefault();
         const formData = new FormData(this);
 
-        fetch('/register', {
+        fetch('/login', {
             method: 'POST',
             body: formData
         })
-            .then(async response => {
-                const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(data.message || "Something went wrong");
-                }
-                document.getElementById('responseMessage').innerHTML =
-                    '<p style="color: lightgreen;">' + data.message + '</p>';
-            })
-            .catch(error => {
-                document.getElementById('responseMessage').innerHTML =
-                    '<p style="color: red;">' + error.message + '</p>';
-            });
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Something went wrong");
+            }
+            window.location.href = "/landing";
+        })
+        .catch(error => {
+            document.getElementById('responseMessage').innerHTML =
+                '<p style="color: red;">' + error.message + '</p>';
+        });
     });
 </script>
 {% endblock %}

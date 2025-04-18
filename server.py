@@ -68,6 +68,29 @@ def register_user():
 def serve_register():
     return render_template('register.html')
 
+@app.route("/login", methods=["GET"])
+def serve_login():
+    return render_template("login.html")
+
+@app.route("/login", methods=["POST"])
+def login_user():
+    username = request.form['username']
+    password = request.form['password']
+
+    user = users.find_one({"username": username})
+    if not user:
+        return jsonify({"message": "Invalid username or password"}), 401
+
+    if bcrypt.checkpw(password.encode(), user["password"]):
+        return jsonify({"message": "Login successful"})
+    else:
+        return jsonify({"message": "Invalid username or password"}), 401
+
+@app.route("/landing", methods=["GET"])
+def landing():
+    return render_template("landing.html")
+
+
 #For logging and giving errors, use format: 
 # app.logger.info() [Whatever you want to show as an error]
 # abort(401) [The status code, if needed]
