@@ -4,16 +4,15 @@ LABEL authors="notsus"
 ENV HOME /root
 WORKDIR /app
 
-#This is for creating a directory which will store the logs.
 RUN mkdir -p /app/logs
 
 COPY . .
 
 RUN pip3 install -r requirements.txt
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
+RUN curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+    chmod +x wait-for-it.sh
 
 EXPOSE 8000
 
-CMD /wait && python3 -u server.py
+CMD sh -c "./wait-for-it.sh mongo:27017 -- python3 -u server.py"

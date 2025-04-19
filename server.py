@@ -1,4 +1,5 @@
 import logging
+import sys
 from logging.config import dictConfig
 
 import bcrypt
@@ -6,37 +7,37 @@ from flask import Flask, redirect, render_template, request, jsonify
 
 from api.db import users
 
-# Setting up logging details.
-# dictConfig({
-#     'version': 1,
-#     'formatters': {
-#         'default': {
-#         'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-#         },
-#         'request': {
-#         'format': '[%(asctime)s] %(remote_addr)s requested %(url)s\n%(levelname)s in %(module)s: %(message)s',
-#         }
-#     },
-#     'handlers': {
-#     'file': {
-#         'class': 'logging.FileHandler',
-#         'filename': 'logs/app.log',
-#         'formatter': 'default',
-#         'level': 'INFO'
-#         },
-#     'console': {
-#         'class': 'logging.StreamHandler',
-#         'stream': 'ext://sys.stdout',
-#         'formatter': 'default',
-#         'level': 'INFO'
-#         }
-#     },
-#     'root': {
-#         'level': 'INFO',
-#         'handlers': ['file', 'console']
-#     }
-#
-# })
+#Setting up logging details.
+dictConfig({
+    'version': 1,
+    'formatters': {
+        'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+        },
+        'request': {
+        'format': '[%(asctime)s] %(remote_addr)s requested %(url)s\n%(levelname)s in %(module)s: %(message)s',
+        }
+    },
+    'handlers': {
+    'file': {
+        'class': 'logging.FileHandler',
+        'filename': 'logs/app.log',
+        'formatter': 'default',
+        'level': 'INFO'
+        },
+    'console': {
+        'class': 'logging.StreamHandler',
+        'stream': 'sys.stdout',
+        'formatter': 'default',
+        'level': 'INFO'
+        }
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['file', 'console']
+    }
+
+})
 
 app = Flask(__name__)
 
@@ -49,18 +50,24 @@ def register_user():
     username = request.form['username']
     password = request.form['password']
     if len(password) < 8:
+        app.logger.warning("Password too short")
         return jsonify({"message":"Password must be at least 8 characters long"}), 400
     elif not any(a.isdigit() for a in password):
+        app.logger.warning("Password not following standards")
         return jsonify({"message":"Password must contain at least one digit"}), 400
     elif not any(a.isupper() for a in password):
+        app.logger.warning("Password not following standards")
         return jsonify({"message":"Password must contain at least one uppercase letter"}), 400
     elif not any(a.islower() for a in password):
+        app.logger.warning("Password not following standards")
         return jsonify({"message":"Password must contain at least one lowercase letter"}), 400
     elif not any (a in ["$", "@", "!", "%", "#"] for a in password):
+        app.logger.warning("Password not following standards")
         return jsonify({"message":"Password must contain at least one special character"}), 400
     if users.find_one({"username":username}) is not None:
         return jsonify({"message": "Username taken"}), 400
     users.insert_one({"username":username, "password":bcrypt.hashpw(password.encode(), bcrypt.gensalt())})
+    app.logger.info(f"User registered: {username}")
     return jsonify({"message":"Registered successfully."})
 
 
@@ -76,14 +83,18 @@ def serve_login():
 def login_user():
     username = request.form['username']
     password = request.form['password']
+    app.logger.info(f"Login attempt for user: {username}")
 
     user = users.find_one({"username": username})
     if not user:
+        app.logger.warning(f"Login failed: {username} does not exist")
         return jsonify({"message": "Invalid username or password"}), 401
 
     if bcrypt.checkpw(password.encode(), user["password"]):
+        app.logger.info(f"Login successful for user: {username}")
         return jsonify({"message": "Login successful"})
     else:
+        app.logger.warning(f"Login failed: {username} invalid password")
         return jsonify({"message": "Invalid username or password"}), 401
 
 @app.route("/landing", methods=["GET"])
