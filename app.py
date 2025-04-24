@@ -21,7 +21,7 @@ dictConfig({
     'handlers': {
     'file': {
         'class': 'logging.FileHandler',
-        'filename': 'logs/app.log',
+        'filename': 'logs/logs.txt',
         'formatter': 'default',
         'level': 'INFO'
         },

@@ -4,7 +4,7 @@ LABEL authors="notsus"
 ENV HOME /root
 WORKDIR /app
 
-RUN mkdir -p /app/logs
+RUN touch logs.txt
 
 COPY . .
 
