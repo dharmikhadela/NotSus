@@ -42,6 +42,14 @@ dictConfig({
 app = Flask(__name__)
 app.secret_key = "yoursecretkey" 
 
+@app.before_request
+def log_request():
+    ip = request.headers.get('X-Real-IP', request.remote_addr)
+    method = request.method
+    path = request.path
+    headers = dict(request.headers)
+    app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
+
 @app.route("/", methods=["GET"])
 def index():
     return redirect("/register")
