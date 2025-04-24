@@ -1,0 +1,1209 @@
+[2025-04-24 03:42:04,166] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 03:42:04,167] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 03:42:04,168] INFO in _internal:  * Restarting with stat
+[2025-04-24 03:42:04,298] WARNING in _internal:  * Debugger is active!
+[2025-04-24 03:42:04,299] INFO in _internal:  * Debugger PIN: 119-046-865
+[2025-04-24 03:42:05,036] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:05] "[32mGET / HTTP/1.1[0m" 302 -
+[2025-04-24 03:42:05,061] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:05] "GET /register HTTP/1.1" 200 -
+[2025-04-24 03:42:05,114] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:05] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 03:42:05,115] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:05] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 03:42:05,192] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:05] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 03:42:07,715] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:07] "GET /login HTTP/1.1" 200 -
+[2025-04-24 03:42:07,743] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:07] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:07,784] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:07] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:08,626] INFO in app: Login attempt for user: UNI
+[2025-04-24 03:42:08,634] WARNING in app: Login failed: UNI does not exist
+[2025-04-24 03:42:08,636] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:08] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+[2025-04-24 03:42:09,842] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:09] "GET /register HTTP/1.1" 200 -
+[2025-04-24 03:42:09,874] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:09] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:09,901] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:09] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:10,670] INFO in app: User registered: UNI
+[2025-04-24 03:42:10,671] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:10] "POST /register HTTP/1.1" 200 -
+[2025-04-24 03:42:11,540] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:11] "GET /login HTTP/1.1" 200 -
+[2025-04-24 03:42:11,571] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:11] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:11,600] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:11] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:12,132] INFO in app: Login attempt for user: UNI
+[2025-04-24 03:42:12,395] INFO in app: Login successful for user: UNI
+[2025-04-24 03:42:12,396] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:12] "POST /login HTTP/1.1" 200 -
+[2025-04-24 03:42:12,405] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:12] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 03:42:12,421] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:12] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:12,452] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:12] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 03:42:13,591] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:13] "[33mGET /start HTTP/1.1[0m" 404 -
+[2025-04-24 03:42:13,626] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:42:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2025-04-24 03:50:57,694] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 03:50:57] "[33mGET /start HTTP/1.1[0m" 404 -
+[2025-04-24 03:59:08,822] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 03:59:08,941] INFO in _internal:  * Restarting with stat
+[2025-04-24 03:59:09,082] WARNING in _internal:  * Debugger is active!
+[2025-04-24 03:59:09,083] INFO in _internal:  * Debugger PIN: 119-046-865
+[2025-04-24 03:59:10,100] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 03:59:10,636] INFO in _internal:  * Restarting with stat
+[2025-04-24 03:59:10,753] WARNING in _internal:  * Debugger is active!
+[2025-04-24 03:59:10,754] INFO in _internal:  * Debugger PIN: 119-046-865
+[2025-04-24 04:00:22,922] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:00:22,923] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:00:22,924] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:00:23,046] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:00:23,048] INFO in _internal:  * Debugger PIN: 876-841-160
+[2025-04-24 04:00:42,235] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:42] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:00:43,097] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:43] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:00:43,123] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:43] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:00:43,148] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:43] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:00:43,194] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:43] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:00:44,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:44] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:00:44,644] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:44] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:44,672] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:44] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:45,512] INFO in app: User registered: UNI
+[2025-04-24 04:00:45,513] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:45] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:00:45,878] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:45] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:00:45,910] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:45] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:45,940] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:45] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:46,439] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:00:46,711] INFO in app: Login successful for user: UNI
+[2025-04-24 04:00:46,712] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:46] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:00:46,720] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:46] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:00:46,736] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:46] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:46,762] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:46] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:47,628] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:47] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:00:47,656] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:47] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:00:47,685] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:47] "GET /static/assets/forest_bg.jpg HTTP/1.1" 200 -
+[2025-04-24 04:00:52,962] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:00:52] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:08,986] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:03:08,987] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:03:08,988] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:03:09,115] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:03:09,117] INFO in _internal:  * Debugger PIN: 353-548-522
+[2025-04-24 04:03:13,464] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:13] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:03:14,083] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:03:14,109] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:03:14,168] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:03:14,224] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:03:14,726] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:03:14,751] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:03:14,775] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:03:14,813] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:14] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:03:15,896] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:15] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:03:15,927] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:15,952] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:15] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:16,675] INFO in app: User registered: UNI
+[2025-04-24 04:03:16,676] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:16] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:03:17,240] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:17] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:03:17,272] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:17] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:17,298] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:17] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:17,816] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:03:18,060] INFO in app: Login successful for user: UNI
+[2025-04-24 04:03:18,061] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:03:18,070] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:03:18,082] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:18,118] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:18,695] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:03:18,725] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:18,750] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:18] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:27,721] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:27] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:03:27,751] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:27] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:27,772] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:27] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:03:27,783] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:03:27] "[36mGET /static/assets/favicon.png HTTP/1.1[0m" 304 -
+[2025-04-24 04:05:03,258] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:05:03] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:05:03,287] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:05:03] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:05:03,311] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:05:03] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:09,224] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:07:09,225] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:07:09,226] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:07:09,345] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:07:09,346] INFO in _internal:  * Debugger PIN: 638-283-120
+[2025-04-24 04:07:13,546] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:13] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:07:13,574] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:13] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:07:13,596] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:13] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:07:13,659] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:13] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:07:15,078] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:15] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:07:15,105] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:15,129] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:15] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:17,510] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:17] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:07:18,890] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:18] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:07:18,916] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:18] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:18,942] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:18] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:19,933] INFO in app: User registered: UNI
+[2025-04-24 04:07:19,934] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:19] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:07:21,488] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:21] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:07:21,522] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:21] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:21,542] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:21] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:22,150] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:07:22,416] INFO in app: Login successful for user: UNI
+[2025-04-24 04:07:22,417] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:22] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:07:22,425] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:22] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:07:22,437] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:22] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:22,475] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:22] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:23,220] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:23] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:07:23,252] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:23] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:07:23,268] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:07:23] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:08:41,522] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:08:41] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:08:41,932] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:08:41] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:08:56,471] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:08:56,472] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:08:56,473] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:08:56,594] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:08:56,595] INFO in _internal:  * Debugger PIN: 117-012-663
+[2025-04-24 04:09:00,783] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:00] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:09:00,840] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:00] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:09:00,854] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:00] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:09:00,941] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:00] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:09:01,457] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:01] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:09:01,483] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:01] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:09:01,504] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:01] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:09:01,539] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:01] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:09:02,850] INFO in app: User registered: UNI
+[2025-04-24 04:09:02,851] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:02] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:09:03,913] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:03] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:09:03,942] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:03] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:09:03,968] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:03] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:09:04,534] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:09:04,803] INFO in app: Login successful for user: UNI
+[2025-04-24 04:09:04,804] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:04] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:09:04,813] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:04] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:09:04,829] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:04] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:09:04,850] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:04] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:09:06,206] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:06] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:09:06,239] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:06] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:09:06,260] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:09:06] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:47,803] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:13:47,805] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:13:47,806] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:13:47,967] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:13:47,968] INFO in _internal:  * Debugger PIN: 722-184-244
+[2025-04-24 04:13:51,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:51] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:13:51,685] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:51] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:13:51,747] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:51] "GET /static/assets/forest_bg.jpg HTTP/1.1" 200 -
+[2025-04-24 04:13:51,824] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:51] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:13:53,723] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:53] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:13:53,746] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:53] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:13:53,775] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:53] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:13:53,805] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:53] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:13:54,260] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:54] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:13:55,432] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:55] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:13:55,459] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:55] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:55,485] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:55] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:56,334] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:56] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:13:56,360] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:56] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:13:56,383] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:56] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:13:56,419] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:56] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:13:57,181] INFO in app: User registered: UNI
+[2025-04-24 04:13:57,182] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:57] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:13:57,802] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:57] "[31m[1mPOST /register HTTP/1.1[0m" 400 -
+[2025-04-24 04:13:58,858] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:58] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:13:58,890] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:58] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:58,921] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:58] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:59,468] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:13:59,738] INFO in app: Login successful for user: UNI
+[2025-04-24 04:13:59,739] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:59] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:13:59,747] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:59] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:13:59,764] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:59] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:13:59,794] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:13:59] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:14:00,704] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:14:00] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:14:00,740] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:14:00] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:14:00,759] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:14:00] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:12,126] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:15:12,127] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:15:12,127] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:15:12,241] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:15:12,242] INFO in _internal:  * Debugger PIN: 129-887-539
+[2025-04-24 04:15:15,158] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:15] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:15:15,571] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:15] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:15:16,366] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:15:16,385] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:15:16,404] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:15:16,438] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:15:16,902] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:15:16,934] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:15:16,956] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:15:16,997] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:16] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:15:17,386] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:15:17,412] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:15:17,434] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:15:17,457] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:15:17,849] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:15:17,873] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:15:17,891] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:15:17,920] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:17] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:15:19,654] INFO in app: User registered: UNI
+[2025-04-24 04:15:19,655] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:19] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:15:20,191] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:20] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:15:20,218] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:20] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:20,243] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:20] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:20,766] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:15:21,034] INFO in app: Login successful for user: UNI
+[2025-04-24 04:15:21,035] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:15:21,045] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:15:21,062] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:21,097] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:21,658] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:15:21,682] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:15:21,707] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:15:21] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:03,635] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:19:03,638] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:19:03,638] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:19:03,753] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:19:03,754] INFO in _internal:  * Debugger PIN: 124-717-330
+[2025-04-24 04:19:04,832] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:04] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:19:05,496] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:05] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:19:06,559] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:06] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:19:06,584] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:06] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:19:06,607] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:06] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:19:06,644] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:06] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:19:09,665] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:09] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:19:09,697] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:19:09,722] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:19:09,754] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:19:10,228] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:10] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:19:10,253] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:10] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:19:10,265] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:10] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:19:10,308] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:10] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:19:11,639] INFO in app: User registered: UNI
+[2025-04-24 04:19:11,640] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:11] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:19:12,437] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:12] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:19:12,465] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:12] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:12,479] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:12] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:12,997] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:19:13,269] INFO in app: Login successful for user: UNI
+[2025-04-24 04:19:13,270] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:19:13,279] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:19:13,292] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:13,311] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:13,860] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:19:13,888] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:19:13,915] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:19:13] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:20:46,499] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:20:46] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:20:46,534] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:20:46] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:20:46,559] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:20:46] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:32,083] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:22:32,084] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:22:32,085] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:22:32,207] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:22:32,208] INFO in _internal:  * Debugger PIN: 104-719-004
+[2025-04-24 04:22:37,113] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:37] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:22:37,230] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:37] "[36mGET /static/assets/favicon.png HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:37,675] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:37] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:22:38,346] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:22:38,369] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:22:38,391] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:22:38,439] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:22:38,929] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:22:38,952] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:22:38,975] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:38] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:22:39,006] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:39] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:22:39,409] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:39] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:22:39,427] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:39] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:22:39,446] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:39] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:22:39,479] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:39] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:22:40,970] INFO in app: User registered: UNI
+[2025-04-24 04:22:40,971] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:40] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:22:41,470] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:41] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:22:41,489] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:41] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:41,517] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:41] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:42,501] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:22:42,773] INFO in app: Login successful for user: UNI
+[2025-04-24 04:22:42,774] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:42] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:22:42,785] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:42] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:22:42,807] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:42] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:42,825] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:42] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:43,544] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:43] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:22:43,573] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:43] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:22:43,596] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:22:43] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:23:45,106] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:23:45] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:23:45,167] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:23:45] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:23:45,181] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:23:45] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:24:04,739] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:24:04] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:24:04,773] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:24:04] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:24:04,798] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:24:04] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:28:33,520] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:33] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:28:33,601] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:33] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:28:33,604] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:33] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:28:34,352] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:34] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:28:34,370] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:34] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:28:34,392] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:28:34] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:34:07,540] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:34:07] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:34:07,573] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:34:07] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:34:07,601] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:34:07] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:38:49,078] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:38:49,079] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:38:49,080] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:38:49,194] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:38:49,195] INFO in _internal:  * Debugger PIN: 798-774-325
+[2025-04-24 04:38:55,692] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:38:55] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:38:55,755] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:38:55] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:38:55,806] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:38:55] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:38:55,849] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:38:55] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:38:59,997] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:38:59] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:39:00,866] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:00] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:39:01,569] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:01] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:39:01,596] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:01] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:39:01,620] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:01] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:39:01,647] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:01] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:39:02,789] INFO in app: User registered: UNI
+[2025-04-24 04:39:02,791] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:02] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:39:03,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:03] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:39:03,643] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:03] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:39:03,671] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:03] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:39:04,225] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:39:04,496] INFO in app: Login successful for user: UNI
+[2025-04-24 04:39:04,497] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:04] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:39:04,504] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:04] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:39:04,521] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:04] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:39:04,551] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:04] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:39:05,152] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:05] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:39:05,178] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:05] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:39:05,209] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:39:05] "GET /static/assets/forest_bg.jpg HTTP/1.1" 200 -
+[2025-04-24 04:40:13,546] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:40:13] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:40:13,581] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:40:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:40:13,607] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:40:13] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:43:40,670] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:40] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:43:41,365] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:41] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:43:55,190] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:43:55,191] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:43:55,192] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:43:55,308] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:43:55,309] INFO in _internal:  * Debugger PIN: 810-553-496
+[2025-04-24 04:43:57,743] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:57] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:43:57,801] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:57] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:43:57,811] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:57] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:43:57,870] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:57] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:43:58,338] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:58] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:43:58,362] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:58] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:43:58,384] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:58] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:43:58,422] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:58] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:43:59,532] INFO in app: User registered: UNI
+[2025-04-24 04:43:59,533] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:43:59] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:44:00,646] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:00] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:44:00,675] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:00] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:44:00,704] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:00] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:44:01,230] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:44:01,500] INFO in app: Login successful for user: UNI
+[2025-04-24 04:44:01,501] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:01] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:44:01,510] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:01] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:44:01,527] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:01] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:44:01,557] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:01] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:44:02,090] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:02] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:44:02,117] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:02] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:44:02,140] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:44:02] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:45:55,871] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:45:55,872] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:45:55,873] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:45:55,985] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:45:55,986] INFO in _internal:  * Debugger PIN: 259-813-647
+[2025-04-24 04:45:59,861] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:45:59] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:45:59,898] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:45:59] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:45:59,905] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:45:59] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:45:59,946] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:45:59] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:46:00,502] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:00] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:46:00,530] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:00] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:46:00,551] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:00] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:46:00,587] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:00] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:46:01,344] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:01] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:46:01,381] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:01] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:46:01,397] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:46:01] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:47:20,544] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:47:20] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:47:20,577] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:47:20] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:47:20,603] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:47:20] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:53:59,594] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 04:53:59,595] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 04:53:59,596] INFO in _internal:  * Restarting with stat
+[2025-04-24 04:53:59,748] WARNING in _internal:  * Debugger is active!
+[2025-04-24 04:53:59,750] INFO in _internal:  * Debugger PIN: 312-433-561
+[2025-04-24 04:54:01,846] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:01] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:54:01,887] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:01] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:54:01,910] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:01] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:54:01,964] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:01] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:54:02,772] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:02] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:54:03,331] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:03] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:54:04,031] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:54:04,056] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:54:04,113] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:54:04,149] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:54:04,475] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /register HTTP/1.1" 200 -
+[2025-04-24 04:54:04,501] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 04:54:04,521] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 04:54:04,554] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:04] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 04:54:05,961] INFO in app: User registered: UNI
+[2025-04-24 04:54:05,962] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:05] "POST /register HTTP/1.1" 200 -
+[2025-04-24 04:54:06,835] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:06] "GET /login HTTP/1.1" 200 -
+[2025-04-24 04:54:06,862] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:06] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:06,896] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:06] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:07,444] INFO in app: Login attempt for user: UNI
+[2025-04-24 04:54:07,715] INFO in app: Login successful for user: UNI
+[2025-04-24 04:54:07,716] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:07] "POST /login HTTP/1.1" 200 -
+[2025-04-24 04:54:07,724] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:07] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:54:07,747] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:07] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:07,809] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:07] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:08,402] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:08] "GET /start HTTP/1.1" 200 -
+[2025-04-24 04:54:08,427] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:08] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:08,451] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:08] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 04:54:08,451] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:54:08] "GET /static/assets/player_soldier.png HTTP/1.1" 200 -
+[2025-04-24 04:58:46,889] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:58:46] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 04:58:46,950] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:58:46] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 04:58:46,959] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 04:58:46] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:07:51,422] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:07:51] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:07:51,456] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:07:51] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:07:51,481] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:07:51] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:07:51,482] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:07:51] "[36mGET /static/assets/player_soldier.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:16:03,558] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:03] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:16:03,618] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:03] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:16:03,625] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:03] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:16:12,403] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:12] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:16:12,463] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:12] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:16:12,470] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:12] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:16:12,470] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:16:12] "[36mGET /static/assets/player_soldier.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:31:29,514] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:31:29] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:31:29,551] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:31:29] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:31:29,567] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:31:29] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:02,193] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 05:38:02,195] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 05:38:02,196] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:38:02,309] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:38:02,310] INFO in _internal:  * Debugger PIN: 660-344-023
+[2025-04-24 05:38:07,249] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:07] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:38:08,241] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:08] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:38:09,505] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:09] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:38:09,532] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:38:09,584] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:38:09,630] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:38:10,051] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:38:10,078] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:38:10,097] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:38:10,128] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:38:10,568] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:38:10,585] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:38:10,608] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:38:10,631] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:10] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:38:11,672] INFO in app: User registered: UNI
+[2025-04-24 05:38:11,673] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:11] "POST /register HTTP/1.1" 200 -
+[2025-04-24 05:38:13,458] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:13] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:38:13,486] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:13,514] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:13] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:14,219] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:38:14,493] INFO in app: Login successful for user: UNI
+[2025-04-24 05:38:14,494] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:14] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:38:14,503] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:14] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:38:14,520] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:14] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:14,546] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:14] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:15,481] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:38:15,511] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:38:15,537] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "GET /static/assets/soldier_left.png HTTP/1.1" 200 -
+[2025-04-24 05:38:15,539] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "GET /static/assets/soldier_down.png HTTP/1.1" 200 -
+[2025-04-24 05:38:15,539] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "GET /static/assets/soldier_right.png HTTP/1.1" 200 -
+[2025-04-24 05:38:15,544] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "GET /static/assets/soldier_up.png HTTP/1.1" 200 -
+[2025-04-24 05:38:15,548] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:38:15] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:15,638] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:15] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:39:15,677] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:15,718] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:15] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:53,983] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:53] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:39:54,018] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:54,045] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:54,047] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:54,054] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:54,054] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:39:54,055] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:39:54] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:34,645] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 05:46:34,646] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 05:46:34,647] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:46:34,767] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:46:34,768] INFO in _internal:  * Debugger PIN: 854-787-849
+[2025-04-24 05:46:39,674] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:39] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:46:39,699] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:39] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:46:39,723] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:39] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:46:39,768] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:39] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:46:42,829] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:42] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:46:43,464] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:43] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:46:44,177] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:44] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:46:44,201] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:44] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:46:44,228] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:44] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:46:44,254] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:44] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:46:45,341] INFO in app: User registered: UNI
+[2025-04-24 05:46:45,342] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:45] "POST /register HTTP/1.1" 200 -
+[2025-04-24 05:46:45,729] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:45] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:46:45,755] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:45] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:45,785] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:45] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:46,357] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:46:46,634] INFO in app: Login successful for user: UNI
+[2025-04-24 05:46:46,637] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:46] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:46:46,646] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:46] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:46:46,662] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:46] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:46,700] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:46] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:47,315] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:46:47,349] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:47,380] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:47,380] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:47,387] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:46:47,418] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "GET /static/assets/soldier_up.png HTTP/1.1" 200 -
+[2025-04-24 05:46:47,429] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:46:47] "GET /static/assets/soldier_right.png HTTP/1.1" 200 -
+[2025-04-24 05:48:09,824] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:48:09] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:48:09,849] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:48:09] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:48:09,871] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:48:09] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:39,420] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 05:51:39,421] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 05:51:39,422] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:51:39,535] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:51:39,536] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:51:46,784] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:46] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:51:46,807] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:46] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:51:46,835] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:46] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:51:46,894] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:46] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:51:47,364] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:51:47,392] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:51:47,466] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:51:47,553] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:51:47,946] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:51:47,968] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:51:47,991] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:47] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:51:48,023] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:48] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:51:48,444] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:48] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:51:48,468] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:48] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:51:48,488] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:48] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:51:48,512] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:48] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:51:49,053] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:49] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:51:50,507] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:50] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:51:50,536] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:50] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:50,568] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:50] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:51,327] INFO in app: User registered: UNI
+[2025-04-24 05:51:51,327] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:51] "POST /register HTTP/1.1" 200 -
+[2025-04-24 05:51:52,117] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:51:52,145] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:52,173] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:52,645] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:51:52,918] INFO in app: Login successful for user: UNI
+[2025-04-24 05:51:52,919] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:51:52,926] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 05:51:52,941] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:52,967] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:52] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:53,638] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "GET /start HTTP/1.1" 200 -
+[2025-04-24 05:51:53,664] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:53,690] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:53,693] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "GET /static/assets/soldier_up.png HTTP/1.1" 200 -
+[2025-04-24 05:51:53,693] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:53,697] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:51:53,698] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:51:53] "GET /static/assets/soldier_down.png HTTP/1.1" 200 -
+[2025-04-24 05:55:54,968] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:55:55,172] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:55:55,334] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:55:55,336] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:55:56,353] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:55:56,877] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:55:57,004] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:55:57,005] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:55:58,023] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:55:58,536] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:55:58,655] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:55:58,656] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:56:06,764] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:56:07,315] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:56:07,449] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:56:07,450] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:56:13,531] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:56:14,064] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:56:14,200] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:56:14,202] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:57:03,817] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:57:04,167] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:57:04,309] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:57:04,312] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:57:06,342] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:57:06,880] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:57:06,998] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:57:06,999] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:58:10,852] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:58:11,069] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:58:11,206] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:58:11,208] INFO in _internal:  * Debugger PIN: 127-246-001
+[2025-04-24 05:58:57,725] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 05:58:57,726] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 05:58:57,727] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:58:57,837] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:58:57,838] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 05:59:00,504] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:00] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:59:01,153] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:01] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:59:02,278] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:59:02,301] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:59:02,324] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:59:02,370] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:59:02,924] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:59:02,947] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:59:02,958] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:02] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:59:03,002] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:03] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:59:03,579] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:03] "GET /register HTTP/1.1" 200 -
+[2025-04-24 05:59:03,602] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:03] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 05:59:03,620] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:03] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 05:59:03,655] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:03] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 05:59:04,938] INFO in app: User registered: UNI
+[2025-04-24 05:59:04,939] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:04] "POST /register HTTP/1.1" 200 -
+[2025-04-24 05:59:05,492] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:05] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:59:05,522] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:05] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:05,537] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:05] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:06,187] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:59:06,459] INFO in app: Login successful for user: UNI
+[2025-04-24 05:59:06,459] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:06] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:59:06,466] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:06] "[32mGET /landing HTTP/1.1[0m" 302 -
+[2025-04-24 05:59:06,469] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:06] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:59:06,511] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:06] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:06,519] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:06] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:08,472] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:59:08,745] INFO in app: Login successful for user: UNI
+[2025-04-24 05:59:08,745] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:08] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:59:08,752] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:08] "[32mGET /landing HTTP/1.1[0m" 302 -
+[2025-04-24 05:59:08,755] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:08] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:59:08,790] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:08] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:08,805] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:08] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:09,537] INFO in app: Login attempt for user: UNI
+[2025-04-24 05:59:09,807] INFO in app: Login successful for user: UNI
+[2025-04-24 05:59:09,807] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:09] "POST /login HTTP/1.1" 200 -
+[2025-04-24 05:59:09,821] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:09] "[32mGET /landing HTTP/1.1[0m" 302 -
+[2025-04-24 05:59:09,825] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:09] "GET /login HTTP/1.1" 200 -
+[2025-04-24 05:59:09,858] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:09] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:09,877] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 05:59:09] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 05:59:56,696] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 05:59:56,889] INFO in _internal:  * Restarting with stat
+[2025-04-24 05:59:57,038] WARNING in _internal:  * Debugger is active!
+[2025-04-24 05:59:57,039] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 06:00:25,391] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 06:00:25,840] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:00:25,989] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:00:25,991] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 06:00:33,064] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 06:00:33,600] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:00:33,719] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:00:33,720] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 06:00:38,776] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 06:00:39,342] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:00:39,478] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:00:39,479] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 06:00:41,505] INFO in _internal:  * Detected change in '/app/logs/app.py', reloading
+[2025-04-24 06:00:42,043] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:00:42,161] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:00:42,162] INFO in _internal:  * Debugger PIN: 755-269-959
+[2025-04-24 06:01:02,677] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:01:02,678] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:01:02,679] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:01:02,804] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:01:02,805] INFO in _internal:  * Debugger PIN: 140-014-873
+[2025-04-24 06:01:07,056] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:07] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:01:08,474] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:08] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:01:08,499] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:08] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:01:08,524] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:08] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:01:08,566] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:08] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:01:09,037] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:01:09,056] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:01:09,077] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:01:09,109] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:01:09,445] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:01:09,468] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:01:09,491] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:01:09,520] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:01:10,921] INFO in app: User registered: UNI
+[2025-04-24 06:01:10,922] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:10] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:01:11,848] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:11] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:01:11,876] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:11] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:11,902] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:11] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:12,372] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:01:12,647] INFO in app: Login successful for user: UNI
+[2025-04-24 06:01:12,648] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:12] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:01:12,657] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:12] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:01:12,680] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:12] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:12,695] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:12] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:14,059] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:14] "[32mGET /logout HTTP/1.1[0m" 302 -
+[2025-04-24 06:01:14,066] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:14] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:01:14,114] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:14] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:14,131] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:14] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:16,025] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:01:16,294] INFO in app: Login successful for user: UNI
+[2025-04-24 06:01:16,295] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:16] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:01:16,303] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:16] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:01:16,319] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:16] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:16,348] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:16] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,115] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:01:17,142] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,168] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,170] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,174] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,176] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:17,177] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:17] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:30,549] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:30] "[32mGET /logout HTTP/1.1[0m" 302 -
+[2025-04-24 06:01:30,556] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:30] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:01:30,614] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:30] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:30,621] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:30] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:56,811] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:01:57,074] INFO in app: Login successful for user: UNI
+[2025-04-24 06:01:57,075] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:57] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:01:57,086] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:57] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:01:57,107] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:57] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:01:57,124] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:01:57] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:02:06,291] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:02:06,560] INFO in app: Login successful for user: UNI
+[2025-04-24 06:02:06,561] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:02:06] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:02:06,569] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:02:06] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:02:06,583] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:02:06] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:02:06,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:02:06] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:02:51,307] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:02:51] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:50,614] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:04:50,615] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:04:50,616] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:04:50,733] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:04:50,734] INFO in _internal:  * Debugger PIN: 113-227-953
+[2025-04-24 06:04:52,897] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:52] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:04:53,724] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:53] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:04:53,749] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:53] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:04:53,768] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:53] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:04:53,811] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:53] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:04:54,332] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:04:54,351] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:04:54,370] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:04:54,404] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:04:54,805] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:04:54,826] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:04:54,853] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:04:54,887] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:54] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:04:56,105] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:56] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:04:56,134] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:56] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:56,161] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:56] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:57,055] INFO in app: User registered: UNI
+[2025-04-24 06:04:57,055] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:57] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:04:58,159] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:58] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:04:58,176] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:58] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:58,196] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:58] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:58,939] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:04:59,207] INFO in app: Login successful for user: UNI
+[2025-04-24 06:04:59,208] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:59] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:04:59,218] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:59] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:04:59,235] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:59] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:04:59,260] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:04:59] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:06:08,160] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:06:08] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:07:31,112] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:07:31,120] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:07:31,121] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:07:31,247] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:07:31,248] INFO in _internal:  * Debugger PIN: 987-777-616
+[2025-04-24 06:07:54,523] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:07:54] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:07:54,555] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:07:54] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:07:54,568] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:07:54] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:07:54,569] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:07:54] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:08:11,546] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:08:11] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:07,227] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:09:07,228] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:09:07,229] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:09:07,342] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:09:07,343] INFO in _internal:  * Debugger PIN: 164-832-226
+[2025-04-24 06:09:16,152] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:16] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:09:16,208] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:16] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:09:16,232] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:16] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:09:16,326] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:16] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:09:18,328] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:09:18,365] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:18,384] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:18,385] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:18,386] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:18,389] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:18,392] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:18] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:20,965] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:20] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:09:20,985] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:20] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:09:20,995] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:20] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:09:21,025] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:21] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:09:22,613] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:09:22,652] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:22,669] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:22,672] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:22,675] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:22,677] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:09:22,678] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:09:22] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:11:25,819] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:11:25] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:11:25,893] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:11:25] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:11:25,901] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:11:25] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:02,639] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:15:02,641] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:15:02,641] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:15:02,801] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:15:02,803] INFO in _internal:  * Debugger PIN: 430-903-886
+[2025-04-24 06:15:08,570] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:08] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:15:08,625] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:08] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:15:08,639] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:08] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:15:08,686] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:08] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:15:09,208] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:15:09,220] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:15:09,241] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:15:09,244] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:15:09,708] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:15:09,721] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:15:09,737] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:15:09,739] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:09] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:15:11,515] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:11] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:15:12,131] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:12] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:15:12,822] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:12] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:15:12,838] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:12] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:15:12,866] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:12] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:15:12,898] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:12] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:15:13,287] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:13] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:15:13,302] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:13] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:15:13,317] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:13] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:15:13,345] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:13] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:15:14,518] INFO in app: User registered: UNI
+[2025-04-24 06:15:14,519] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:14] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:15:15,778] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:15] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:15:15,796] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:15,816] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:15] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:16,339] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:15:16,584] INFO in app: Login successful for user: UNI
+[2025-04-24 06:15:16,585] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:16] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:15:16,593] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:16] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:15:16,616] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:16] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:16,635] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:16] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,568] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:15:17,592] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,607] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,607] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,608] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,609] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:15:17,611] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:15:17] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:16:21,786] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:16:21] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:16:21,805] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:16:21] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:16:21,826] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:16:21] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:19:50,917] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:50] "[32mGET /logout HTTP/1.1[0m" 302 -
+[2025-04-24 06:19:50,923] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:50] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:19:50,984] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:50] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:19:50,987] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:50] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:19:54,975] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:54] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:19:55,605] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:55] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:19:55,621] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:55] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:19:55,638] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:55] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:19:55,678] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:19:55] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:20:07,707] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:20:07,710] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:20:07,711] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:20:07,834] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:20:07,835] INFO in _internal:  * Debugger PIN: 126-937-406
+[2025-04-24 06:20:10,009] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:10] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:20:10,075] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:10] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:20:10,154] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:10] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:20:10,216] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:10] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:20:11,137] INFO in app: User registered: UNI
+[2025-04-24 06:20:11,137] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:11] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:20:13,069] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:13] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:20:13,109] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:13] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:13,111] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:13,711] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:20:13,969] INFO in app: Login successful for user: UNI
+[2025-04-24 06:20:14,007] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:14] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:20:14,020] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:14] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:20:14,037] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:14] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:14,062] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:14] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,218] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:20:15,243] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,260] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "GET /static/assets/bullet.png HTTP/1.1" 200 -
+[2025-04-24 06:20:15,261] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,263] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,265] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,267] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:20:15,268] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:20:15] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:21:33,783] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:21:33] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:21:33,822] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:21:33] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:21:33,851] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:21:33] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:22:52,918] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:22:52,922] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:22:52,923] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:22:53,044] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:22:53,045] INFO in _internal:  * Debugger PIN: 184-488-303
+[2025-04-24 06:22:57,086] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:57] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:22:57,675] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:57] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:22:58,406] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:58] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:22:58,424] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:58] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:22:58,445] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:58] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:22:58,479] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:58] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:22:59,769] INFO in app: User registered: UNI
+[2025-04-24 06:22:59,770] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:22:59] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:23:00,762] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:00] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:23:00,781] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:00] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:00,799] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:00] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:01,441] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:23:01,689] INFO in app: Login successful for user: UNI
+[2025-04-24 06:23:01,690] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:01] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:23:01,699] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:01] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:23:01,716] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:01] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:01,746] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:01] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,549] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:23:02,565] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,588] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,588] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,591] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,598] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,604] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:23:02,608] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:23:02] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:25,987] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:25:25,993] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:25:25,994] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:25:26,129] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:25:26,130] INFO in _internal:  * Debugger PIN: 141-569-769
+[2025-04-24 06:25:30,346] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:30] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:25:30,924] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:30] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:25:31,655] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:31] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:25:31,673] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:31] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:25:31,705] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:31] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:25:31,748] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:31] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:25:34,480] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:25:34,497] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:25:34,521] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:25:34,544] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:25:34,864] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:25:34,880] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:25:34,898] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:25:34,920] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:34] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:25:36,199] INFO in app: User registered: UNI
+[2025-04-24 06:25:36,200] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:36] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:25:37,027] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:37] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:25:37,045] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:37] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:37,065] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:37] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:37,724] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:25:37,985] INFO in app: Login successful for user: UNI
+[2025-04-24 06:25:37,987] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:37] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:25:37,996] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:37] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:25:38,015] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:38] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:38,041] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:38] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,097] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:25:39,115] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,136] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,138] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,141] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,144] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,153] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:25:39,156] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:25:39] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:11,608] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:26:11,612] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:26:11,613] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:26:11,738] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:26:11,739] INFO in _internal:  * Debugger PIN: 519-660-265
+[2025-04-24 06:26:16,089] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:16] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:26:16,808] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:16] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:26:22,063] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:22] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:26:22,087] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:22] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:26:22,108] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:22] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:26:22,146] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:22] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:26:23,435] INFO in app: User registered: UNI
+[2025-04-24 06:26:23,436] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:23] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:26:24,027] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:26:24,049] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:24,072] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:24,583] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:26:24,830] INFO in app: Login successful for user: UNI
+[2025-04-24 06:26:24,831] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:26:24,840] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:26:24,853] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:24,878] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:24] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,414] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:26:25,437] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,456] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,458] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,462] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,466] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,467] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:26:25,471] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:26:25] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:27:33,782] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:27:33] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:27:33,817] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:27:33] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:27:33,855] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:27:33] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:39:01,976] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:39:01,977] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:39:01,978] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:39:02,203] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:39:02,204] INFO in _internal:  * Debugger PIN: 528-753-299
+[2025-04-24 06:39:05,300] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:39:05] "[32mGET /logout HTTP/1.1[0m" 302 -
+[2025-04-24 06:39:05,326] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:39:05] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:39:05,394] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:39:05] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:39:05,402] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:39:05] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:40:56,547] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:56] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:40:56,587] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:56] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:40:56,608] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:56] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:40:56,676] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:56] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:40:58,171] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:58] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:40:58,199] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:58] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:40:58,228] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:58] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:40:58,963] INFO in app: User registered: UNI
+[2025-04-24 06:40:58,964] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:58] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:40:59,829] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:59] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:40:59,857] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:59] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:40:59,892] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:40:59] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:00,424] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:41:00,694] INFO in app: Login successful for user: UNI
+[2025-04-24 06:41:00,695] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:00] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:41:00,707] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:00] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:41:00,725] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:00] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:00,750] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:00] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:01,552] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:41:01,580] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:01,609] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "GET /static/assets/forest_bg.jpg HTTP/1.1" 200 -
+[2025-04-24 06:41:01,610] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "GET /static/assets/bullet.png HTTP/1.1" 200 -
+[2025-04-24 06:41:01,613] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:01,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:41:01,616] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "GET /static/assets/soldier_down.png HTTP/1.1" 200 -
+[2025-04-24 06:41:01,624] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:41:01] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:01,880] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:01] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:42:02,066] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:02] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:02,067] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:02] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,947] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:42:03,963] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,987] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,990] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,992] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,993] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,997] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:03,998] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:03] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:48,933] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:42:48,933] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:42:48,934] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:42:49,052] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:42:49,053] INFO in _internal:  * Debugger PIN: 868-289-801
+[2025-04-24 06:42:49,353] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:49] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:42:49,407] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:49] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:42:49,420] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:49] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:42:49,502] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:49] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:42:51,159] INFO in app: User registered: UNI
+[2025-04-24 06:42:51,160] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:51] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:42:51,713] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:51] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:42:51,738] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:51] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:51,766] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:51] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:52,254] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:42:52,516] INFO in app: Login successful for user: UNI
+[2025-04-24 06:42:52,518] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:52] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:42:52,527] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:52] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:42:52,549] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:52] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:52,575] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:52] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,361] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:42:53,382] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,416] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,418] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,420] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,432] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,436] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:42:53,447] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:42:53] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:43:53,574] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:43:53] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:43:53,624] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:43:53] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:43:53,709] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:43:53] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:07,632] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+[2025-04-24 06:46:07,636] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2025-04-24 06:46:07,640] INFO in _internal:  * Restarting with stat
+[2025-04-24 06:46:07,777] WARNING in _internal:  * Debugger is active!
+[2025-04-24 06:46:07,778] INFO in _internal:  * Debugger PIN: 147-635-709
+[2025-04-24 06:46:12,041] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:46:12,131] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:46:12,178] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:46:12,236] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:46:12,525] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:46:12,542] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/css/base.css HTTP/1.1" 200 -
+[2025-04-24 06:46:12,557] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/assets/NotSus.jpg HTTP/1.1" 200 -
+[2025-04-24 06:46:12,577] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:12] "GET /static/assets/favicon.png HTTP/1.1" 200 -
+[2025-04-24 06:46:13,644] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:13] "[32mGET /logout HTTP/1.1[0m" 302 -
+[2025-04-24 06:46:13,656] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:13] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:46:13,719] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:13] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:13,720] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:13] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:14,761] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:14] "GET /register HTTP/1.1" 200 -
+[2025-04-24 06:46:14,791] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:14] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:14,816] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:14] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:15,569] INFO in app: User registered: UNI
+[2025-04-24 06:46:15,570] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:15] "POST /register HTTP/1.1" 200 -
+[2025-04-24 06:46:16,440] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:16] "GET /login HTTP/1.1" 200 -
+[2025-04-24 06:46:16,475] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:16] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:16,476] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:16] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:17,319] INFO in app: Login attempt for user: UNI
+[2025-04-24 06:46:17,591] INFO in app: Login successful for user: UNI
+[2025-04-24 06:46:17,592] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:17] "POST /login HTTP/1.1" 200 -
+[2025-04-24 06:46:17,600] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:17] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:46:17,615] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:17] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:17,651] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:17] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,586] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "GET /start HTTP/1.1" 200 -
+[2025-04-24 06:46:18,614] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,643] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/bullet.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,645] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/soldier_right.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,648] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/forest_bg.jpg HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,653] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/soldier_down.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,658] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/soldier_left.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:46:18,662] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:46:18] "[36mGET /static/assets/soldier_up.png HTTP/1.1[0m" 304 -
+[2025-04-24 06:47:23,773] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:47:23] "GET /landing HTTP/1.1" 200 -
+[2025-04-24 06:47:23,845] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:47:23] "[36mGET /static/css/base.css HTTP/1.1[0m" 304 -
+[2025-04-24 06:47:23,846] INFO in _internal: 192.168.65.1 - - [24/Apr/2025 06:47:23] "[36mGET /static/assets/NotSus.jpg HTTP/1.1[0m" 304 -

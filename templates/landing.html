@@ -17,13 +17,20 @@
         text-align: center;
     }
 
+    .landing-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 77.5%;
+        transform: translate(-50%, -30%);
+    }
+
     .landing-container {
-        margin-top: 200px;
         background-color: rgba(0, 0, 0, 0.6);
         display: inline-block;
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        max-width: 600px;
     }
 
     .landing-container h1 {
@@ -56,10 +63,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="landing-container">
-    <h1>Welcome to NotSus</h1>
-    <p>You’ve successfully logged in. Ready to jump into action?</p>
-    <a class="button" href="/start">Start Game</a>
-    <a class="button" href="/logout">Logout</a>
+<div class="landing-wrapper">
+    <div class="landing-container">
+        <h1>Welcome!</h1>
+        <p>You’ve successfully logged in. Ready to jump into action?</p>
+        <a class="button" href="/start">Start Game</a>
+        <a class="button" href="/logout">Logout</a>
+    </div>
 </div>
 {% endblock %}

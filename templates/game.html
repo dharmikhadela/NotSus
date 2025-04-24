@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>NotSus - Game</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        z-index: 0;
+    }
+
+    #timer {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="timer">01:00</div>
+<canvas id="gameCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const bg = new Image();
+    bg.src = "{{ url_for('static', filename='assets/forest_bg.jpg') }}";
+
+    const playerSprites = {
+        down: new Image(),
+        up: new Image(),
+        left: new Image(),
+        right: new Image()
+    };
+
+    playerSprites.down.src = "{{ url_for('static', filename='assets/soldier_down.png') }}";
+    playerSprites.up.src = "{{ url_for('static', filename='assets/soldier_up.png') }}";
+    playerSprites.left.src = "{{ url_for('static', filename='assets/soldier_left.png') }}";
+    playerSprites.right.src = "{{ url_for('static', filename='assets/soldier_right.png') }}";
+
+    const bulletImg = new Image();
+    bulletImg.src = "{{ url_for('static', filename='assets/bullet.png') }}";
+
+    const ZOOM = 3;
+
+    const player = {
+        size: 50,
+        x: 0,
+        y: 0,
+        speed: 2
+    };
+
+    const keys = {
+        w: false,
+        a: false,
+        s: false,
+        d: false
+    };
+
+    let currentSprite = playerSprites.down;
+    let currentDirection = 'down';
+    let bullets = [];
+
+    let bgWidth, bgHeight;
+
+    // 🟡 FAKE OTHER USERS — REPLACE with WebSocket sync later
+    const otherUsers = [
+        { x: 700, y: 600, sprite: playerSprites.right },
+        { x: 800, y: 650, sprite: playerSprites.down }
+    ];
+
+    // Timer Logic
+    let seconds = 60;
+    const timerEl = document.getElementById("timer");
+
+    function formatTime(s) {
+        const m = Math.floor(s / 60).toString().padStart(2, '0');
+        const sec = (s % 60).toString().padStart(2, '0');
+        return `${m}:${sec}`;
+    }
+
+    function countdown() {
+        timerEl.textContent = formatTime(seconds);
+        if (seconds <= 0) {
+            window.location.href = "/landing";
+        } else {
+            seconds--;
+            setTimeout(countdown, 1000);
+        }
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key in keys) keys[e.key] = true;
+
+        switch (e.key) {
+            case 'w': currentSprite = playerSprites.up; currentDirection = 'up'; break;
+            case 'a': currentSprite = playerSprites.left; currentDirection = 'left'; break;
+            case 's': currentSprite = playerSprites.down; currentDirection = 'down'; break;
+            case 'd': currentSprite = playerSprites.right; currentDirection = 'right'; break;
+            case ' ': shootBullet(); break;
+        }
+    });
+
+    document.addEventListener("keyup", (e) => {
+        if (e.key in keys) keys[e.key] = false;
+    });
+
+    function shootBullet() {
+        const bulletSpeed = 5;
+        let velocity = { x: 0, y: 0 };
+
+        switch (currentDirection) {
+            case 'up': velocity.y = -bulletSpeed; break;
+            case 'down': velocity.y = bulletSpeed; break;
+            case 'left': velocity.x = -bulletSpeed; break;
+            case 'right': velocity.x = bulletSpeed; break;
+        }
+
+        bullets.push({
+            x: player.x + player.size / 2 - 8,
+            y: player.y + player.size / 2 - 8,
+            velocity: velocity,
+            width: 16,
+            height: 16
+        });
+    }
+
+    function updateGame() {
+        if (keys.w) player.y -= player.speed;
+        if (keys.s) player.y += player.speed;
+        if (keys.a) player.x -= player.speed;
+        if (keys.d) player.x += player.speed;
+
+        player.x = Math.max(0, Math.min(player.x, bgWidth - player.size));
+        player.y = Math.max(0, Math.min(player.y, bgHeight - player.size));
+
+        const zoomedW = canvas.width / ZOOM;
+        const zoomedH = canvas.height / ZOOM;
+
+        let offsetX = player.x - zoomedW / 2 + player.size / 2;
+        let offsetY = player.y - zoomedH / 2 + player.size / 2;
+
+        offsetX = Math.max(0, Math.min(offsetX, bgWidth - zoomedW));
+        offsetY = Math.max(0, Math.min(offsetY, bgHeight - zoomedH));
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.scale(ZOOM, ZOOM);
+
+        ctx.drawImage(bg, -offsetX, -offsetY);
+
+        // 🎯 Draw Other Players
+        for (const u of otherUsers) {
+            const ux = u.x - offsetX;
+            const uy = u.y - offsetY;
+            ctx.drawImage(u.sprite, ux, uy, player.size, player.size);
+        }
+
+        // 🧍 Draw Current Player
+        const drawX = player.x - offsetX;
+        const drawY = player.y - offsetY;
+        ctx.drawImage(currentSprite, drawX, drawY, player.size, player.size);
+
+        // 💥 Draw bullets
+        bullets.forEach((b, index) => {
+            b.x += b.velocity.x;
+            b.y += b.velocity.y;
+
+            if (b.x < 0 || b.y < 0 || b.x > bgWidth || b.y > bgHeight) {
+                bullets.splice(index, 1);
+            } else {
+                ctx.drawImage(bulletImg, b.x - offsetX, b.y - offsetY, b.width, b.height);
+            }
+        });
+
+        ctx.restore();
+        requestAnimationFrame(updateGame);
+    }
+
+    bg.onload = () => {
+        bgWidth = bg.width;
+        bgHeight = bg.height;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        player.x = bgWidth / 2;
+        player.y = bgHeight / 2;
+
+        countdown();
+        updateGame();
+    };
+</script>
+{% endblock %}

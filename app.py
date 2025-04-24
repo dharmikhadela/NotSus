@@ -3,7 +3,7 @@ import sys
 from logging.config import dictConfig
 
 import bcrypt
-from flask import Flask, redirect, render_template, request, jsonify
+from flask import Flask, redirect, render_template, request, jsonify, session
 
 from api.db import users
 
@@ -40,6 +40,7 @@ dictConfig({
 })
 
 app = Flask(__name__)
+app.secret_key = "yoursecretkey" 
 
 @app.route("/", methods=["GET"])
 def index():
@@ -91,6 +92,7 @@ def login_user():
         return jsonify({"message": "Invalid username or password"}), 401
 
     if bcrypt.checkpw(password.encode(), user["password"]):
+        session["username"] = username
         app.logger.info(f"Login successful for user: {username}")
         return jsonify({"message": "Login successful"})
     else:
@@ -99,7 +101,22 @@ def login_user():
 
 @app.route("/landing", methods=["GET"])
 def landing():
+    if "username" not in session:
+        return redirect("/login")
     return render_template("landing.html")
+
+@app.route("/start", methods=["GET"])
+def start_game():
+    if "username" not in session:
+        return redirect("/login")
+    return render_template("game.html")
+
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.clear()
+    return redirect("/login")
 
 
 #For logging and giving errors, use format: 
