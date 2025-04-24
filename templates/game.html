@@ -3,7 +3,8 @@
 {% block head %}
 <title>NotSus - Game</title>
 <style>
-    html, body {
+    html,
+    body {
         margin: 0;
         padding: 0;
         background-color: black;
@@ -41,6 +42,35 @@
 <canvas id="gameCanvas"></canvas>
 
 <script>
+    const ws = new WebSocket(`ws://${window.location.hostname}:6789`);
+    let otherUsers = [];
+
+    ws.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        if (data.type === "update") {
+            otherUsers = data.players
+                .filter(p => !(p.x === player.x && p.y === player.y))
+                .map(p => ({
+                    x: p.x,
+                    y: p.y,
+                    sprite: playerSprites[p.direction] || playerSprites.down
+                }));
+        }
+    };
+
+
+
+    function sendPosition() {
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
+                type: "move",
+                x: player.x,
+                y: player.y,
+                direction: currentDirection
+            }));
+        }
+    }
+
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -83,12 +113,6 @@
     let bullets = [];
 
     let bgWidth, bgHeight;
-
-    // 🟡 FAKE OTHER USERS — REPLACE with WebSocket sync later
-    const otherUsers = [
-        { x: 700, y: 600, sprite: playerSprites.right },
-        { x: 800, y: 650, sprite: playerSprites.down }
-    ];
 
     // Timer Logic
     let seconds = 60;
@@ -196,6 +220,7 @@
 
         ctx.restore();
         requestAnimationFrame(updateGame);
+        sendPosition();
     }
 
     bg.onload = () => {

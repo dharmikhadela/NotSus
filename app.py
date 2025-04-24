@@ -27,7 +27,7 @@ dictConfig({
         },
     'console': {
         'class': 'logging.StreamHandler',
-        'stream': 'sys.stdout',
+        'stream': sys.stdout,
         'formatter': 'default',
         'level': 'INFO'
         }

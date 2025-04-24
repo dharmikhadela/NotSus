@@ -7,11 +7,11 @@
         background-image: url("{{ url_for('static', filename='assets/NotSus.jpg') }}");
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center center;
+        background-position: center top;
         height: 100vh;
         width: 100vw;
         margin: 0;
-        padding: 0;
+        padding-top: 60px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: white;
         text-align: center;
@@ -29,13 +29,14 @@
         display: inline-block;
         padding: 40px;
         border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        max-width: 600px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        width: 300px;
     }
 
-    .landing-container h1 {
-        font-size: 48px;
+    .landing-container h2 {
         color: #FFA500;
+        text-align: center;
+        font-size: 32px;
         margin-bottom: 20px;
     }
 
@@ -62,10 +63,11 @@
 </style>
 {% endblock %}
 
+
 {% block body %}
 <div class="landing-wrapper">
     <div class="landing-container">
-        <h1>Welcome!</h1>
+        <h2>Welcome!</h2>
         <p>You’ve successfully logged in. Ready to jump into action?</p>
         <a class="button" href="/start">Start Game</a>
         <a class="button" href="/logout">Logout</a>
