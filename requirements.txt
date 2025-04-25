@@ -1,4 +1,4 @@
 flask
 pymongo
 bcrypt
-websockets
+websockets==12.0
