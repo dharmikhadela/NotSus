@@ -42,7 +42,7 @@
 <canvas id="gameCanvas"></canvas>
 
 <script>
-    const ws = new WebSocket(`ws://${window.location.hostname}:6789`);
+    const ws = new WebSocket(`wss://${window.location.hostname}/ws/`);
     let otherUsers = [];
 
     ws.onmessage = function (event) {
@@ -60,14 +60,19 @@
 
 
 
+    let lastSent = 0;
+    const SEND_INTERVAL = 100; // in ms
+
     function sendPosition() {
-        if (ws.readyState === WebSocket.OPEN) {
+        const now = Date.now();
+        if (now - lastSent >= SEND_INTERVAL && ws.readyState === WebSocket.OPEN) {
             ws.send(JSON.stringify({
                 type: "move",
                 x: player.x,
                 y: player.y,
                 direction: currentDirection
             }));
+            lastSent = now;
         }
     }
 
