@@ -21,7 +21,7 @@ dictConfig({
     'handlers': {
     'file': {
         'class': 'logging.FileHandler',
-        'filename': 'logs/logs.txt',
+        'filename': 'logs.txt',
         'formatter': 'default',
         'level': 'INFO'
         },
@@ -75,7 +75,7 @@ def register_user():
         return jsonify({"message":"Password must contain at least one special character"}), 400
     if users.find_one({"username":username}) is not None:
         return jsonify({"message": "Username taken"}), 400
-    users.insert_one({"username":username, "password":bcrypt.hashpw(password.encode(), bcrypt.gensalt())})
+    users.insert_one({"username":username, "password":bcrypt.hashpw(password.encode(), bcrypt.gensalt()), "score": 0})
     app.logger.info(f"User registered: {username}")
     return jsonify({"message":"Registered successfully."})
 
@@ -125,6 +125,18 @@ def start_game():
 def logout():
     session.clear()
     return redirect("/login")
+
+
+@app.route("/scoreboard", methods=["GET"])
+def scoreboard():
+    if "username" not in session:
+        return redirect("/login")
+
+    # Get all users and their scores, sorted by score descending
+    all_users = list(users.find({}, {"_id": 0, "username": 1, "score": 1}))
+    all_users.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+    return render_template("scoreboard.html", users=all_users)
 
 
 #For logging and giving errors, use format: 

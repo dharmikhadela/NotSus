@@ -45,6 +45,14 @@
     const ws = new WebSocket(`wss://${window.location.hostname}/ws/`);
     let otherUsers = [];
 
+    ws.onopen = function() {
+    ws.send(JSON.stringify({
+        type: "init",
+        username: "{{ session['username'] }}"
+    }));
+};
+
+
     ws.onmessage = function (event) {
         const data = JSON.parse(event.data);
         if (data.type === "update") {
@@ -55,6 +63,10 @@
                     y: p.y,
                     sprite: playerSprites[p.direction] || playerSprites.down
                 }));
+        }
+        if (data.type === "killed") {
+            alert("You were killed!");
+            window.location.href = "/landing";
         }
     };
 
@@ -132,7 +144,7 @@
     function countdown() {
         timerEl.textContent = formatTime(seconds);
         if (seconds <= 0) {
-            window.location.href = "/landing";
+            window.location.href = "/scoreboard";
         } else {
             seconds--;
             setTimeout(countdown, 1000);
@@ -213,14 +225,36 @@
 
         // 💥 Draw bullets
         bullets.forEach((b, index) => {
+            for (const [index, b] of bullets.entries()) {
             b.x += b.velocity.x;
             b.y += b.velocity.y;
 
             if (b.x < 0 || b.y < 0 || b.x > bgWidth || b.y > bgHeight) {
                 bullets.splice(index, 1);
-            } else {
-                ctx.drawImage(bulletImg, b.x - offsetX, b.y - offsetY, b.width, b.height);
+                continue;
             }
+
+            // 🧠 Collision Detection
+            for (const other of otherUsers) {
+                if (b.x < other.x + player.size &&
+                    b.x + b.width > other.x &&
+                    b.y < other.y + player.size &&
+                    b.y + b.height > other.y) {
+
+                    // 📡 Tell the server "I hit someone!"
+                    ws.send(JSON.stringify({
+                        type: "hit",
+                        x: other.x,
+                        y: other.y
+                    }));
+
+                    bullets.splice(index, 1); // Remove bullet
+                    break;
+                }
+            }
+
+            ctx.drawImage(bulletImg, b.x - offsetX, b.y - offsetY, b.width, b.height);
+        }
         });
 
         ctx.restore();
