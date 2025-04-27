@@ -3,6 +3,7 @@ import logging
 import sys
 import uuid
 from logging.config import dictConfig
+import random
 
 import bcrypt
 from flask import Flask, redirect, render_template, request, jsonify, session, make_response
@@ -49,10 +50,6 @@ clients = {}
 rooms = {}
 usernames = {}
 
-@app.route("/", methods=["GET"])
-def index():
-    return redirect("/register")
-
 @app.before_request
 def log_request():
     ip = request.headers.get('X-Real-IP', request.remote_addr)
@@ -60,8 +57,6 @@ def log_request():
     path = request.path
     headers = dict(request.headers)
     app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
-
-
 
 
 @app.route('/register', methods=['POST'])
@@ -130,21 +125,27 @@ def login_user():
         return jsonify({"message": "Invalid username or password"}), 401
 
 
-@app.route("/landing", methods=["GET"])
-def landing():
-    if "auth_token" in request.cookies:
-        user = users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
-        if user is not None:
-            session["username"] = user["username"]
-        else:
-            return redirect("/login")
+@app.route("/", methods=["GET"])
+def index():
+    if authenticate(request) is not None:
+        session["username"] = authenticate(request)["username"]
+    else:
+        return redirect("/login")
     return render_template("landing.html")
 
+@app.route("/landing", methods=["GET"])
+def landing():
+    return redirect("/")
 
-@app.route("/start", methods=["GET"])
-def start_game():
-    if "username" not in session:
+@app.route("/game/<lobby_id>", methods=["GET"])
+def start_game(lobby_id):
+    if authenticate(request) is not None:
+        session["username"] = authenticate(request)["username"]
+    else:
         return redirect("/login")
+    lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
+    if lobby is None:
+        return "Not Found", 404
     return render_template("game.html")
 
 
@@ -156,7 +157,9 @@ def logout():
 
 @app.route("/scoreboard", methods=["GET"])
 def scoreboard():
-    if "username" not in session:
+    if authenticate(request) is not None:
+        session["username"] = authenticate(request)["username"]
+    else:
         return redirect("/login")
 
     # Get all users and their scores, sorted by score descending
@@ -168,27 +171,29 @@ def scoreboard():
 
 @app.route("/find-lobby", methods=["GET"])
 def find_lobby():
-    if "auth_token" in request.cookies:
-        user = users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
-        if user is not None:
-            session["username"] = user["username"]
-        else:
-            return redirect("/login")
-
+    if authenticate(request) is not None:
+        session["username"] = authenticate(request)["username"]
+    else:
+        return redirect("/login")
     lobbies = lobbies_collection.find({"started": False})
     for lobby in lobbies:
         if len(lobby["players"]) <= 25:
-            pass  # join lobby
+            return redirect("/lobby/" + lobby["lobby_id"])
     lobby_id = str(uuid.uuid1())
-
+    lobbies_collection.insert_one({"lobby_id":lobby_id, "players":[], "started": False})
     return redirect("/lobby/" + lobby_id)
 
 
 @app.route("/lobby/<lobby_id>")
 def serve_lobby(lobby_id):
-    # lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
-    # if lobby is None:
-    #     return "Not Found", 404
+    if authenticate(request) is not None:
+        session["username"] = authenticate(request)["username"]
+        session["lobby_id"] = lobby_id
+    else:
+        return redirect("/login")
+    lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
+    if lobby is None:
+        return "Not Found", 404
     return render_template("lobby.html")
 
 @socketio.on('join_lobby')
@@ -196,18 +201,26 @@ def handle_join_lobby(data):
     username = data['username']
     room_id = data['roomID']
 
-    # Join the user to the specified room
     join_room(room_id)
     print(f"{username} has joined room {room_id}!")
 
     if room_id not in rooms:
         rooms[room_id] = []
 
+
+    lobbies_collection.update_one({"lobby_id":room_id},{"$push":{"players":username}})
+
     rooms[room_id].append(username)
-    clients[request.sid]["username"] = username
+    clients[request.sid] = {
+        "username": username,
+        "room_id": room_id,
+        "x": random.randint(-10, 10),
+        "y": random.randint(-10, 10),
+        "direction": "down"
+    }
 
     for existing_user in rooms[room_id]:
-        if existing_user != username:  # Don't send to the joining user themselves
+        if existing_user != username:
             emit('user_joined', existing_user, to=request.sid)
 
     emit('user_joined', username, to=room_id)
@@ -217,10 +230,22 @@ def get_me():
     if "auth_token" in request.cookies:
         user = users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
         if user is not None:
-            return jsonify({"username":user["username"]})
-        else:
-            return jsonify({"username":"NOBODY."})
-    return jsonify({"username":"NOBODY."})
+            lobby_id = session.get("lobby_id", None)
+            return jsonify({"username": user["username"], "lobby_id": lobby_id})
+    return jsonify({"username": "NOBODY.", "lobby_id": None})
+
+@socketio.on('rejoin')
+def handle_rejoin(data):
+    lobby_id = data.get('lobby_id')
+    username = data.get('username')
+    join_room(lobby_id)
+    clients[request.sid] = {"x": 0, "y": 0, "direction": "down", "username": username, "room_id":lobby_id}
+    if lobby_id not in rooms:
+        rooms[lobby_id] = []
+    if username not in rooms[lobby_id]:
+        rooms[lobby_id].append(username)
+    emit('user_joined', username, to=lobby_id)
+    app.logger.info(f"User {username} rejoined room {lobby_id}")
 
 @socketio.on('connect')
 def on_connect():
@@ -241,6 +266,7 @@ def on_disconnect():
             if username == clients[request.sid]["username"]:  # You would match based on session/user info
                 users.remove(username)
                 leave_room(room_id)
+                lobbies_collection.update_one({"lobby_id": room_id}, {"$pull": {"players": username}})
                 print(f"{username} has left room {room_id}.")
 
                 # Notify everyone in the room that the user has left
@@ -261,18 +287,21 @@ def on_move(data):
         clients[request.sid]["x"] = data.get("x", 0)
         clients[request.sid]["y"] = data.get("y", 0)
         clients[request.sid]["direction"] = data.get("direction", "down")
-
-    broadcast_state()
+        broadcast_state()
 
 @socketio.on('hit')
 def on_hit(data):
     hit_x = data.get("x")
     hit_y = data.get("y")
     shooter_sid = request.sid
+    shooter_room = clients[shooter_sid].get("room_id")
 
     for sid, player in list(clients.items()):
         if sid == shooter_sid:
             continue
+
+        if player.get("room_id") != shooter_room:
+            continue  # Only allow hits within the same room, obviously, you dense bitch
 
         px = player["x"]
         py = player["y"]
@@ -290,11 +319,32 @@ def on_hit(data):
             broadcast_state()
             break
 
+@socketio.on('request_start')
+def on_request_start(data):
+    game = data.get("lobby_id")
+    lobbies_collection.update_one({"lobby_id":game}, {"$set":{"started":True}})
+    emit('start_game', {"lobby_id":game}, to=game)
+
 def broadcast_state():
-    state = {
-        "players": list(clients.values())
-    }
-    socketio.emit('update', state)
+    # Collect all players grouped by room
+    room_states = {}
+
+    for sid, client in clients.items():
+        room_id = client.get("room_id")
+        if room_id:
+            room_states.setdefault(room_id, []).append({
+                "username": client.get("username"),
+                "x": client.get("x"),
+                "y": client.get("y"),
+                "direction": client.get("direction"),
+                "room_id":room_id
+            })
+
+    for room_id, players in room_states.items():
+        print(room_id)
+        print(players)
+        socketio.emit('update', {"players": players}, to=room_id)
+
 
 def update_score(sid):
     client = clients.get(sid)
@@ -307,7 +357,11 @@ def update_score(sid):
             {"$inc": {"score": 1}}
         )
 
-
+def authenticate(request):
+    if "auth_token" in request.cookies:
+        return users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
+    else:
+        return None
 
 #For logging and giving errors, use format:
 # app.logger.info() [Whatever you want to show as an error]

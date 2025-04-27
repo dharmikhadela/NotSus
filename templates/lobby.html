@@ -47,7 +47,7 @@
             background-color: rgba(255, 153, 0, 0.1);
         }
 
-        a {
+        a.button {
             margin-top: 30px;
             text-decoration: none;
             font-size: 20px;
@@ -56,14 +56,15 @@
             padding: 10px 20px;
             border-radius: 8px;
             transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
         }
 
-        a:hover {
+        a.button:hover {
             background-color: #ff9900;
             color: black;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>Lobby</h1>
@@ -72,56 +73,61 @@
             <th>Username</th>
         </tr>
     </table>
-    <a href="/landing">Play Again</a>
+    <a class="button" id="startButton">Start Game</a>
 
     <script>
         const socket = io();
 
-        // Extract the lobby ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const lobbyID = window.location.pathname.split('/').pop(); // Grab the last segment of the URL
+        const lobbyID = window.location.pathname.split('/').pop(); // Get lobby ID from URL
 
-        // Fetch the username from the /api/me endpoint
+        // Fetch username and join the lobby
         fetch('/api/me')
-    .then(response => response.json())
-    .then(data => {
-        const username = data.username;  // Assuming the response is { "username": "Player1" }
-        const lobbyID = window.location.pathname.split('/').pop();  // Extract lobby ID from the URL
+            .then(response => response.json())
+            .then(data => {
+                const username = data.username;
 
-        // Emit the username and lobby ID to the server when joining the lobby
-        console.log(`Sending username: ${username} to room: ${lobbyID}`);
-        socket.emit('join_lobby', { username, roomID: lobbyID });  // Ensure the right data is being sent
+                console.log(`Sending username: ${username} to room: ${lobbyID}`);
+                socket.emit('join_lobby', { username, roomID: lobbyID });
 
-        // Listen for the 'user_joined' event to update the table
-        socket.on('user_joined', (username) => {
-            console.log(`Received user_joined event: ${username}`);
-            const table = document.getElementById("userTable");
+                socket.on('user_joined', (username) => {
+                    console.log(`Received user_joined event: ${username}`);
+                    const table = document.getElementById("userTable");
 
-            const row = document.createElement("tr");
-            const cell = document.createElement("td");
-            cell.textContent = username;
-            row.appendChild(cell);
-            table.appendChild(row);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching username:', error);
-        alert('Failed to fetch username');
-    });
+                    const row = document.createElement("tr");
+                    const cell = document.createElement("td");
+                    cell.textContent = username;
+                    row.appendChild(cell);
+                    table.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching username:', error);
+                alert('Failed to fetch username');
+            });
 
         socket.on('user_left', (username) => {
-    console.log(`User left: ${username}`);
-    // Find the row with the username and remove it
-    const table = document.getElementById("userTable");
-    const rows = table.getElementsByTagName("tr");
-    for (let row of rows) {
-        if (row.textContent.includes(username)) {
-            row.remove();
-            break;
-        }
-    }
-});
+            console.log(`User left: ${username}`);
+            const table = document.getElementById("userTable");
+            const rows = table.getElementsByTagName("tr");
+            for (let row of rows) {
+                if (row.textContent.includes(username)) {
+                    row.remove();
+                    break;
+                }
+            }
+        });
 
+        document.getElementById("startButton").addEventListener("click", () => {
+            console.log(`Requesting to start game for lobby ${lobbyID}`);
+            socket.emit('request_start', { lobby_id: lobbyID });
+        });
+
+        socket.on('start_game', (data) => {
+            console.log(`Received start_game for lobby ${data.lobby_id}`);
+            if (data.lobby_id === lobbyID) {
+                window.location.href = `/game/${lobbyID}`;
+            }
+        });
     </script>
 </body>
 </html>

@@ -44,16 +44,26 @@
 <script type="text/javascript">
     const socket = io();
     let otherUsers = [];
+    let lobby_id = null
 
-    socket.on('connect', function() {
+    socket.on('connect', () => {
         socket.emit('init', {
             username: "{{ session['username'] }}"
         });
+        fetch('/api/me')
+            .then(res => res.json())
+            .then(data => {
+                if (data.lobby_id) {
+                    socket.emit('rejoin', { lobby_id: data.lobby_id, username: data.username });
+                    lobby_id = data.lobby_id
+                }
+            });
     });
+
 
     socket.on('update', function(data) {
         otherUsers = data.players
-            .filter(p => !(p.x === player.x && p.y === player.y))
+            .filter(p => !(p.x === player.x && p.y === player.y && p.username === "{{ session['username'] }}"))
             .map(p => ({
                 x: p.x,
                 y: p.y,
@@ -75,7 +85,8 @@
             socket.emit('move', {
                 x: player.x,
                 y: player.y,
-                direction: currentDirection
+                direction: currentDirection,
+                lobby_id: lobby_id
             });
             lastSent = now;
         }
@@ -236,7 +247,8 @@
                     // 📡 Tell the server "I hit someone!"
                     socket.emit('hit', {
                         x: other.x,
-                        y: other.y
+                        y: other.y,
+                        lobby_id: lobby_id
                     });
 
                     bullets.splice(index, 1); // Remove bullet
