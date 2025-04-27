@@ -38,52 +38,45 @@
 {% endblock %}
 
 {% block body %}
-<div id="timer">01:00</div>
 <canvas id="gameCanvas"></canvas>
+<div id="timer">01:00</div>
 
-<script>
-    const ws = new WebSocket(`wss://${window.location.hostname}/ws/`);
+<script type="text/javascript">
+    const socket = io();
     let otherUsers = [];
 
-    ws.onopen = function() {
-    ws.send(JSON.stringify({
-        type: "init",
-        username: "{{ session['username'] }}"
-    }));
-};
+    socket.on('connect', function() {
+        socket.emit('init', {
+            username: "{{ session['username'] }}"
+        });
+    });
 
+    socket.on('update', function(data) {
+        otherUsers = data.players
+            .filter(p => !(p.x === player.x && p.y === player.y))
+            .map(p => ({
+                x: p.x,
+                y: p.y,
+                sprite: playerSprites[p.direction] || playerSprites.down
+            }));
+    });
 
-    ws.onmessage = function (event) {
-        const data = JSON.parse(event.data);
-        if (data.type === "update") {
-            otherUsers = data.players
-                .filter(p => !(p.x === player.x && p.y === player.y))
-                .map(p => ({
-                    x: p.x,
-                    y: p.y,
-                    sprite: playerSprites[p.direction] || playerSprites.down
-                }));
-        }
-        if (data.type === "killed") {
-            alert("You were killed!");
-            window.location.href = "/landing";
-        }
-    };
-
-
+    socket.on('killed', function() {
+        alert("You were killed!");
+        window.location.href = "/landing";
+    });
 
     let lastSent = 0;
     const SEND_INTERVAL = 100; // in ms
 
     function sendPosition() {
         const now = Date.now();
-        if (now - lastSent >= SEND_INTERVAL && ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify({
-                type: "move",
+        if (now - lastSent >= SEND_INTERVAL) {
+            socket.emit('move', {
                 x: player.x,
                 y: player.y,
                 direction: currentDirection
-            }));
+            });
             lastSent = now;
         }
     }
@@ -225,13 +218,12 @@
 
         // 💥 Draw bullets
         bullets.forEach((b, index) => {
-            for (const [index, b] of bullets.entries()) {
             b.x += b.velocity.x;
             b.y += b.velocity.y;
 
             if (b.x < 0 || b.y < 0 || b.x > bgWidth || b.y > bgHeight) {
                 bullets.splice(index, 1);
-                continue;
+                return;
             }
 
             // 🧠 Collision Detection
@@ -242,11 +234,10 @@
                     b.y + b.height > other.y) {
 
                     // 📡 Tell the server "I hit someone!"
-                    ws.send(JSON.stringify({
-                        type: "hit",
+                    socket.emit('hit', {
                         x: other.x,
                         y: other.y
-                    }));
+                    });
 
                     bullets.splice(index, 1); // Remove bullet
                     break;
@@ -254,7 +245,6 @@
             }
 
             ctx.drawImage(bulletImg, b.x - offsetX, b.y - offsetY, b.width, b.height);
-        }
         });
 
         ctx.restore();
