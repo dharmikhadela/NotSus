@@ -60,7 +60,7 @@ def log_request():
     if 'Cookie' in headers:
         cookies = headers['Cookie']
         cookies = re.sub(r'auth_token=[^;]+', 'auth_token=<REDACTED>', cookies)
-        cookies = re.sub(r'session=[^;]+', 'auth_token=<REDACTED>', cookies)
+        cookies = re.sub(r'session=[^;]+', 'session=<REDACTED>', cookies)
 
         headers['Cookie'] = cookies
     app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
@@ -304,9 +304,10 @@ def on_hit(data):
     shooter_room = clients[shooter_sid].get("room_id")
 
     for sid, player in list(clients.items()):
+        if player.get("username") == clients[shooter_sid].get("username"):
+            continue  # Don't allow shooting yourself
         if sid == shooter_sid:
             continue
-
         if player.get("room_id") != shooter_room:
             continue  # Only allow hits within the same room, obviously, you dense bitch
 
@@ -331,6 +332,11 @@ def on_request_start(data):
     game = data.get("lobby_id")
     lobbies_collection.update_one({"lobby_id":game}, {"$set":{"started":True}})
     emit('start_game', {"lobby_id":game}, to=game)
+
+@socketio.on('shoot_bullet')
+def on_shoot_bullet(data):
+    room_id = data.get('lobby_id')
+    emit('bullet_fired', data, to=room_id)
 
 def broadcast_state():
     # Collect all players grouped by room

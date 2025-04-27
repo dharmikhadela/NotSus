@@ -60,18 +60,22 @@
             });
     });
 
+    socket.on('bullet_fired', function (bullet) {
+        bullets.push(bullet);
+    });
 
-    socket.on('update', function(data) {
+    socket.on('update', function (data) {
         otherUsers = data.players
             .filter(p => !(p.x === player.x && p.y === player.y && p.username === "{{ session['username'] }}"))
             .map(p => ({
                 x: p.x,
                 y: p.y,
-                sprite: playerSprites[p.direction] || playerSprites.down
+                sprite: playerSprites[p.direction] || playerSprites.down,
+                username: p.username
             }));
     });
 
-    socket.on('killed', function() {
+    socket.on('killed', function () {
         alert("You were killed!");
         window.location.href = "/landing";
     });
@@ -126,7 +130,11 @@
         w: false,
         a: false,
         s: false,
-        d: false
+        d: false,
+        ArrowUp: false,
+        ArrowDown: false,
+        ArrowLeft: false,
+        ArrowRight: false
     };
 
     let currentSprite = playerSprites.down;
@@ -159,11 +167,25 @@
         if (e.key in keys) keys[e.key] = true;
 
         switch (e.key) {
-            case 'w': currentSprite = playerSprites.up; currentDirection = 'up'; break;
-            case 'a': currentSprite = playerSprites.left; currentDirection = 'left'; break;
-            case 's': currentSprite = playerSprites.down; currentDirection = 'down'; break;
-            case 'd': currentSprite = playerSprites.right; currentDirection = 'right'; break;
-            case ' ': shootBullet(); break;
+            case 'w': case 'ArrowUp':
+                currentSprite = playerSprites.up;
+                currentDirection = 'up';
+                break;
+            case 'a': case 'ArrowLeft':
+                currentSprite = playerSprites.left;
+                currentDirection = 'left';
+                break;
+            case 's': case 'ArrowDown':
+                currentSprite = playerSprites.down;
+                currentDirection = 'down';
+                break;
+            case 'd': case 'ArrowRight':
+                currentSprite = playerSprites.right;
+                currentDirection = 'right';
+                break;
+            case ' ':
+                shootBullet();
+                break;
         }
     });
 
@@ -182,20 +204,28 @@
             case 'right': velocity.x = bulletSpeed; break;
         }
 
-        bullets.push({
+        const bullet = {
             x: player.x + player.size / 2 - 8,
             y: player.y + player.size / 2 - 8,
             velocity: velocity,
             width: 16,
-            height: 16
+            height: 16,
+            spawnTime: Date.now()
+        };
+
+        bullets.push(bullet);
+
+        socket.emit('shoot_bullet', {
+            ...bullet,
+            lobby_id: lobby_id
         });
     }
 
     function updateGame() {
-        if (keys.w) player.y -= player.speed;
-        if (keys.s) player.y += player.speed;
-        if (keys.a) player.x -= player.speed;
-        if (keys.d) player.x += player.speed;
+        if (keys.w || keys.ArrowUp) player.y -= player.speed;
+        if (keys.s || keys.ArrowDown) player.y += player.speed;
+        if (keys.a || keys.ArrowLeft) player.x -= player.speed;
+        if (keys.d || keys.ArrowRight) player.x += player.speed;
 
         player.x = Math.max(0, Math.min(player.x, bgWidth - player.size));
         player.y = Math.max(0, Math.min(player.y, bgHeight - player.size));
@@ -209,9 +239,9 @@
         offsetX = Math.max(0, Math.min(offsetX, bgWidth - zoomedW));
         offsetY = Math.max(0, Math.min(offsetY, bgHeight - zoomedH));
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.save();
         ctx.scale(ZOOM, ZOOM);
+        ctx.clearRect(0, 0, canvas.width / ZOOM, canvas.height / ZOOM);
 
         ctx.drawImage(bg, -offsetX, -offsetY);
 
@@ -220,6 +250,11 @@
             const ux = u.x - offsetX;
             const uy = u.y - offsetY;
             ctx.drawImage(u.sprite, ux, uy, player.size, player.size);
+            // display usernames
+            ctx.font = "bold 12px Courier New";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.fillText(u.username, ux + player.size / 2, uy - 10);
         }
 
         // 🧍 Draw Current Player
@@ -237,22 +272,23 @@
                 return;
             }
 
-            // 🧠 Collision Detection
-            for (const other of otherUsers) {
-                if (b.x < other.x + player.size &&
-                    b.x + b.width > other.x &&
-                    b.y < other.y + player.size &&
-                    b.y + b.height > other.y) {
+            if (Date.now() - b.spawnTime > 250) { // only check collisions after 100ms
+                for (const other of otherUsers) {
+                    if (b.x < other.x + player.size &&
+                        b.x + b.width > other.x &&
+                        b.y < other.y + player.size &&
+                        b.y + b.height > other.y) {
 
-                    // 📡 Tell the server "I hit someone!"
-                    socket.emit('hit', {
-                        x: other.x,
-                        y: other.y,
-                        lobby_id: lobby_id
-                    });
+                        // 📡 Tell the server "I hit someone!"
+                        socket.emit('hit', {
+                            x: other.x,
+                            y: other.y,
+                            lobby_id: lobby_id
+                        });
 
-                    bullets.splice(index, 1); // Remove bullet
-                    break;
+                        bullets.splice(index, 1); // Remove bullet
+                        break;
+                    }
                 }
             }
 
