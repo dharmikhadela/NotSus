@@ -4,6 +4,7 @@ import sys
 import uuid
 from logging.config import dictConfig
 import random
+import re
 
 import bcrypt
 from flask import Flask, redirect, render_template, request, jsonify, session, make_response
@@ -24,7 +25,7 @@ dictConfig({
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
-            'filename': 'logs.txt',
+            'filename': '/app/logs/logs.txt',
             'formatter': 'default',
             'level': 'INFO'
         },
@@ -44,7 +45,7 @@ dictConfig({
 
 app = Flask(__name__)
 app.secret_key = "yoursecretkey"
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8080","http://127.0.0.1:8080","https://not-sus.cse312.dev"])
 
 clients = {}
 rooms = {}
@@ -56,6 +57,12 @@ def log_request():
     method = request.method
     path = request.path
     headers = dict(request.headers)
+    if 'Cookie' in headers:
+        cookies = headers['Cookie']
+        cookies = re.sub(r'auth_token=[^;]+', 'auth_token=<REDACTED>', cookies)
+        cookies = re.sub(r'session=[^;]+', 'auth_token=<REDACTED>', cookies)
+
+        headers['Cookie'] = cookies
     app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
 
 
