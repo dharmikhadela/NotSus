@@ -5,6 +5,7 @@ import uuid
 from logging.config import dictConfig
 import random
 import re
+import datetime
 
 import bcrypt
 from flask import Flask, redirect, render_template, request, jsonify, session, make_response
@@ -162,24 +163,33 @@ def logout():
     return redirect("/login")
 
 
-@app.route("/scoreboard", methods=["GET"])
-def scoreboard():
-    if authenticate(request) is not None:
+@app.route("/scoreboard/<lobby_id>", methods=["GET"])
+def scoreboard(lobby_id):
+    user = authenticate(request)
+    if user is not None:
         session["username"] = authenticate(request)["username"]
     else:
         return redirect("/login")
+    lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
+    if lobby is None:
+        return "Not Found", 404
+    lobby_users = lobby.get("players")
+    all_users = [{"username":user["username"], "score":user["score"]}]
+    if lobby_users is not None:
+        for user in lobby_users:
+            user_entry = users.find_one({"username":user})
+            all_users.append({"username":user, "score":user_entry.get("score")})
+        # Get all users and their scores, sorted by score descending
+        all_users.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    # Get all users and their scores, sorted by score descending
-    all_users = list(users.find({}, {"_id": 0, "username": 1, "score": 1}))
-    all_users.sort(key=lambda x: x.get("score", 0), reverse=True)
-
-    return render_template("scoreboard.html", users=all_users)
-
+    return render_template("scoreboard.html")
 
 @app.route("/find-lobby", methods=["GET"])
 def find_lobby():
-    if authenticate(request) is not None:
+    user = authenticate(request)
+    if user is not None:
         session["username"] = authenticate(request)["username"]
+        users.update_one({"username":user.get("username")}, {"$set":{"score":0}})
     else:
         return redirect("/login")
     lobbies = lobbies_collection.find({"started": False})
@@ -187,7 +197,7 @@ def find_lobby():
         if len(lobby["players"]) <= 25:
             return redirect("/lobby/" + lobby["lobby_id"])
     lobby_id = str(uuid.uuid1())
-    lobbies_collection.insert_one({"lobby_id":lobby_id, "players":[], "started": False})
+    lobbies_collection.insert_one({"lobby_id":lobby_id, "players":[], "started": False, "created_at":datetime.datetime.now(datetime.UTC)})
     return redirect("/lobby/" + lobby_id)
 
 
@@ -202,6 +212,10 @@ def serve_lobby(lobby_id):
     if lobby is None:
         return "Not Found", 404
     return render_template("lobby.html")
+
+@socketio.on('score_update')
+def send_score_update(data):
+    emit('score_update', to=data["lobby_id"])
 
 @socketio.on('join_lobby')
 def handle_join_lobby(data):
@@ -241,6 +255,19 @@ def get_me():
             return jsonify({"username": user["username"], "lobby_id": lobby_id})
     return jsonify({"username": "NOBODY.", "lobby_id": None})
 
+@app.route("/api/scores/<lobby_id>")
+def get_scores(lobby_id):
+    lobby = lobbies_collection.find_one({"lobby_id":lobby_id})
+    if lobby is None:
+        return jsonify({"players": {}})
+    players = {}
+    players_list = lobby.get("players")
+    for player in players_list:
+        user = users.find_one({"username":player})
+        players[player] = user.get("score")
+    return jsonify({"players":players})
+
+
 @socketio.on('rejoin')
 def handle_rejoin(data):
     lobby_id = data.get('lobby_id')
@@ -252,7 +279,13 @@ def handle_rejoin(data):
     if username not in rooms[lobby_id]:
         rooms[lobby_id].append(username)
     emit('user_joined', username, to=lobby_id)
-    app.logger.info(f"User {username} rejoined room {lobby_id}")
+    lobby = lobbies_collection.find_one({"lobby_id":lobby_id})
+    if lobby is not None:
+        if username not in lobby.get("players"):
+            lobbies_collection.update_one({"lobby_id": lobby_id}, {"$push": {"players": username}})
+        app.logger.info(f"User {username} rejoined room {lobby_id}")
+    else:
+        app.logger.info(f"User {username} attempted to join room {lobby_id}, but no room exists")
 
 @socketio.on('connect')
 def on_connect():
@@ -273,7 +306,7 @@ def on_disconnect():
             if username == clients[request.sid]["username"]:  # You would match based on session/user info
                 users.remove(username)
                 leave_room(room_id)
-                lobbies_collection.update_one({"lobby_id": room_id}, {"$pull": {"players": username}})
+                # lobbies_collection.update_one({"lobby_id": room_id}, {"$pull": {"players": username}})
                 print(f"{username} has left room {room_id}.")
 
                 # Notify everyone in the room that the user has left
@@ -304,27 +337,33 @@ def on_hit(data):
     shooter_room = clients[shooter_sid].get("room_id")
 
     for sid, player in list(clients.items()):
-        if player.get("username") == clients[shooter_sid].get("username"):
+        if player.get("username") == data.get("shooter"):
             continue  # Don't allow shooting yourself
         if sid == shooter_sid:
             continue
         if player.get("room_id") != shooter_room:
-            continue  # Only allow hits within the same room, obviously, you dense bitch
+            continue  # Only allow hits within the same room
 
         px = player["x"]
         py = player["y"]
 
         if abs(px - hit_x) < 25 and abs(py - hit_y) < 25:
             try:
-                socketio.emit('killed', to=sid)
+                # Emit kill event with shooter information
+                socketio.emit('killed', {
+                    'victim': player['username'],
+                    'shooter': data.get("shooter")
+                }, to=sid)
                 disconnect(sid)
             except Exception as e:
                 print(f"Error killing client {sid}: {e}")
 
             if sid in clients:
                 del clients[sid]
-            update_score(shooter_sid)
-            broadcast_state()
+
+            update_score(shooter_sid)  # Update the score for the shooter
+            broadcast_state()  # Broadcast the new state
+            emit('score_update', to=shooter_room)  # Send updated score to the room
             break
 
 @socketio.on('request_start')
@@ -369,6 +408,7 @@ def update_score(sid):
             {"username": username},
             {"$inc": {"score": 1}}
         )
+
 
 def authenticate(request):
     if "auth_token" in request.cookies:

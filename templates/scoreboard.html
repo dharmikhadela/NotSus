@@ -71,16 +71,93 @@
             <th>Username</th>
             <th>Score</th>
         </tr>
-        {% for user in users %}
-        <tr>
-            <td>
-                {% if loop.index0 == 0 %}🏆 {% endif %}
-                {{ user.username }}
-            </td>
-            <td>{{ user.score }}</td>
-        </tr>
-        {% endfor %}
     </table>
     <a href="/find-lobby">Play Again</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="application/javascript">
+        const lobbyID = window.location.pathname.split('/').pop();
+        fetch(`/api/scores/${lobbyID}`)
+                .then(res => res.json())
+                .then(data => {
+                    const players = data.players;
+                    const table = document.querySelector('table');
+
+                    // Clear existing player rows except the header
+                    while (table.rows.length > 1) {
+                        table.deleteRow(1);
+                    }
+
+                    // Convert object to array and sort by score descending
+                    const sortedPlayers = Object.entries(players)
+                        .sort((a, b) => b[1] - a[1]);
+
+                    sortedPlayers.forEach(([username, score], index) => {
+                        const row = table.insertRow();
+                        const usernameCell = row.insertCell(0);
+                        const scoreCell = row.insertCell(1);
+
+                        usernameCell.innerHTML = (index === 0 ? '🏆 ' : '') + username;
+                        scoreCell.textContent = score;
+                    });
+                })
+                .catch(err => {
+                    console.error('Failed to fetch scores', err);
+                });
+
+        const socket = io();
+        let otherUsers = [];
+
+
+        socket.on('connect', () => {
+            socket.emit('init', {
+                username: "{{ session['username'] }}"
+            });
+            socket.emit('score_update', {username: "{{ session['username'] }}", lobby_id: lobbyID})
+            fetch('/api/me')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.lobby_id) {
+                        socket.emit('rejoin', { lobby_id: data.lobby_id, username: data.username });
+                        lobby_id = data.lobby_id
+                    }
+                });
+        });
+
+        socket.on('score_update', () => {
+            if (!lobby_id) {
+                console.error('No lobby_id available');
+                return;
+            }
+
+            fetch(`/api/scores/${lobby_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    const players = data.players;
+                    const table = document.querySelector('table');
+
+                    // Clear existing player rows except the header
+                    while (table.rows.length > 1) {
+                        table.deleteRow(1);
+                    }
+
+                    // Convert object to array and sort by score descending
+                    const sortedPlayers = Object.entries(players)
+                        .sort((a, b) => b[1] - a[1]);
+
+                    sortedPlayers.forEach(([username, score], index) => {
+                        const row = table.insertRow();
+                        const usernameCell = row.insertCell(0);
+                        const scoreCell = row.insertCell(1);
+
+                        usernameCell.innerHTML = (index === 0 ? '🏆 ' : '') + username;
+                        scoreCell.textContent = score;
+                    });
+                })
+                .catch(err => {
+                    console.error('Failed to fetch scores', err);
+                });
+        });
+    </script>
 </body>
 </html>

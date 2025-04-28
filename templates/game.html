@@ -75,9 +75,10 @@
             }));
     });
 
-    socket.on('killed', function () {
-        alert("You were killed!");
-        window.location.href = "/landing";
+
+    socket.on('killed', function (data) {
+        alert(`${data.shooter} killed ${data.victim}`);
+        window.location.href = "/scoreboard/"+lobby_id;
     });
 
     let lastSent = 0;
@@ -156,7 +157,7 @@
     function countdown() {
         timerEl.textContent = formatTime(seconds);
         if (seconds <= 0) {
-            window.location.href = "/scoreboard";
+            window.location.href = "/scoreboard/"+lobby_id;
         } else {
             seconds--;
             setTimeout(countdown, 1000);
@@ -205,6 +206,7 @@
         }
 
         const bullet = {
+            shooter: "{{ session['username'] }}",
             x: player.x + player.size / 2 - 8,
             y: player.y + player.size / 2 - 8,
             velocity: velocity,
@@ -279,12 +281,18 @@
                         b.y < other.y + player.size &&
                         b.y + b.height > other.y) {
 
-                        // 📡 Tell the server "I hit someone!"
                         socket.emit('hit', {
+                            shooter: b.shooter,
                             x: other.x,
                             y: other.y,
                             lobby_id: lobby_id
                         });
+
+                        socket.emit('score_update', {
+                            username: "{{ session['username'] }}",
+                            lobby_id: lobby_id
+                        });
+
 
                         bullets.splice(index, 1); // Remove bullet
                         break;
