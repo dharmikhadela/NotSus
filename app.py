@@ -95,7 +95,7 @@ def register_user():
                       "password": bcrypt.hashpw(password.encode(), bcrypt.gensalt()),
                       "auth_token": hashlib.sha256(auth_token.encode()).hexdigest(), "score": 0})
     app.logger.info(f"User registered: {username}")
-    return jsonify({"message": "Registered successfully."})
+    return redirect("/login")
 
 
 @app.route("/register", methods=['GET'])
