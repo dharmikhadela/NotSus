@@ -66,7 +66,7 @@
 
     socket.on('update', function (data) {
         otherUsers = data.players
-            .filter(p => !(p.x === player.x && p.y === player.y && p.username === "{{ session['username'] }}"))
+            .filter(p => p.username !== "{{ session['username'] }}")
             .map(p => ({
                 x: p.x,
                 y: p.y,
