@@ -93,7 +93,8 @@ def register_user():
     response.set_cookie("auth_token", auth_token, httponly=True, max_age=2600000)
     users.insert_one({"user_id": str(uuid.uuid1()), "username": username,
                       "password": bcrypt.hashpw(password.encode(), bcrypt.gensalt()),
-                      "auth_token": hashlib.sha256(auth_token.encode()).hexdigest(), "score": 0})
+                      "auth_token": hashlib.sha256(auth_token.encode()).hexdigest(), "score": 0,
+                       "lifetime_wins": 0, "lifetime_kills": 0, "lifetime_deaths": 0, "kill_death": 0.0}) # For player stats
     app.logger.info(f"User registered: {username}")
     return jsonify({"message": "Registered successfully."})
 
@@ -267,6 +268,22 @@ def get_scores(lobby_id):
         players[player] = user.get("score")
     return jsonify({"players":players})
 
+@app.route('/api/update_winner', methods=['POST'])
+def update_winner():
+    data = request.get_json()
+    username = data.get('username')
+
+    if not username:
+        return jsonify({'message': 'Missing username'}), 400
+
+    users.update_one(
+        {"username": username},
+        {"$inc": {"lifetime_wins": 1}}
+    )
+
+    return jsonify({'message': 'Winner updated'})
+
+
 
 @socketio.on('rejoin')
 def handle_rejoin(data):
@@ -354,6 +371,7 @@ def on_hit(data):
                     'victim': player['username'],
                     'shooter': data.get("shooter")
                 }, to=sid)
+                update_stats_on_death(player['username'])
                 disconnect(sid)
             except Exception as e:
                 print(f"Error killing client {sid}: {e}")
@@ -404,9 +422,18 @@ def update_score(sid):
         return
     username = client.get("username")
     if username:
+        player_stats = users.find_one({"username": username})
+        kills = player_stats.get("lifetime_kills") + 1
+        deaths = player_stats.get("lifetime_deaths")
+        if deaths == 0.0:
+            kd = float(kills)
+        else:
+            kd = kills / deaths
+
         users.update_one(
             {"username": username},
-            {"$inc": {"score": 1}}
+            {"$inc": {"score": 1, "lifetime_kills": 1},
+             "$set": {"kill_death": kd}}
         )
 
 
@@ -415,6 +442,23 @@ def authenticate(request):
         return users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
     else:
         return None
+
+
+def update_stats_on_death(killed_user):
+    player_stats = users.find_one({"username": killed_user})
+    kills = player_stats.get("lifetime_kills")
+    deaths = player_stats.get("lifetime_deaths") + 1
+    if deaths == 0.0:
+        kd = float(kills)
+    else:
+        kd = kills / deaths
+
+    users.update_one({"username": killed_user},
+                     {"$inc": {"lifetime_deaths": 1},
+                      "$set": {"kill_death": kd}}
+                     )
+
+
 
 #For logging and giving errors, use format:
 # app.logger.info() [Whatever you want to show as an error]
