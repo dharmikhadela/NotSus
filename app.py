@@ -433,12 +433,18 @@ def broadcast_state():
     for sid, client in clients.items():
         room_id = client.get("room_id")
         if room_id:
+            # Fetch profile picture from your database (assuming `users` collection has a `profile_pic` field)
+            username = client.get("username")
+            user = users.find_one({"username": username})
+            profile_pic = user.get("profile_pic") if user else None
+
             room_states.setdefault(room_id, []).append({
-                "username": client.get("username"),
+                "username": username,
                 "x": client.get("x"),
                 "y": client.get("y"),
                 "direction": client.get("direction"),
-                "room_id":room_id
+                "room_id": room_id,
+                "profile_pic": profile_pic,  # Add profile picture to player data
             })
 
     for room_id, players in room_states.items():

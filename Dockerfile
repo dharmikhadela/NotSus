@@ -14,7 +14,6 @@ RUN curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-
     chmod +x wait-for-it.sh
 
 EXPOSE 8000
-EXPOSE 6789
 
 CMD sh -c "./wait-for-it.sh mongo:27017 -- sh -c 'python3 -u app.py'"
 
