@@ -53,11 +53,20 @@
         fetch('/api/me')
             .then(res => res.json())
             .then(data => {
+                if (data.profile_pic) {
+                    const profilePath = `/static/profile_pics/${data.profile_pic}`;
+                    setSingleSprite(profilePath);
+                } else {
+                    setPlayerSprites("{{ url_for('static', filename='assets/soldier') }}");
+                }
+
+
                 if (data.lobby_id) {
                     socket.emit('rejoin', { lobby_id: data.lobby_id, username: data.username });
-                    lobby_id = data.lobby_id
+                    lobby_id = data.lobby_id;
                 }
             });
+
     });
 
     socket.on('bullet_fired', function (bullet) {
@@ -78,7 +87,7 @@
 
     socket.on('killed', function (data) {
         alert(`${data.shooter} killed ${data.victim}`);
-        window.location.href = "/scoreboard/"+lobby_id;
+        window.location.href = "/scoreboard/" + lobby_id;
     });
 
     let lastSent = 0;
@@ -103,17 +112,39 @@
     const bg = new Image();
     bg.src = "{{ url_for('static', filename='assets/forest_bg.jpg') }}";
 
-    const playerSprites = {
+    let playerSprites = {
         down: new Image(),
         up: new Image(),
         left: new Image(),
         right: new Image()
     };
 
-    playerSprites.down.src = "{{ url_for('static', filename='assets/soldier_down.png') }}";
-    playerSprites.up.src = "{{ url_for('static', filename='assets/soldier_up.png') }}";
-    playerSprites.left.src = "{{ url_for('static', filename='assets/soldier_left.png') }}";
-    playerSprites.right.src = "{{ url_for('static', filename='assets/soldier_right.png') }}";
+    const defaultSprites = {
+        down: "{{ url_for('static', filename='assets/soldier_down.png') }}",
+        up: "{{ url_for('static', filename='assets/soldier_up.png') }}",
+        left: "{{ url_for('static', filename='assets/soldier_left.png') }}",
+        right: "{{ url_for('static', filename='assets/soldier_right.png') }}"
+    };
+
+    function setSingleSprite(path) {
+        const img = new Image();
+        img.src = path;
+
+        playerSprites = {
+            down: img,
+            up: img,
+            left: img,
+            right: img
+        };
+    }
+
+
+    function setPlayerSprites(basePath) {
+        playerSprites.down.src = basePath + "_down.png";
+        playerSprites.up.src = basePath + "_up.png";
+        playerSprites.left.src = basePath + "_left.png";
+        playerSprites.right.src = basePath + "_right.png";
+    }
 
     const bulletImg = new Image();
     bulletImg.src = "{{ url_for('static', filename='assets/bullet.png') }}";
@@ -157,7 +188,7 @@
     function countdown() {
         timerEl.textContent = formatTime(seconds);
         if (seconds <= 0) {
-            window.location.href = "/scoreboard/"+lobby_id;
+            window.location.href = "/scoreboard/" + lobby_id;
         } else {
             seconds--;
             setTimeout(countdown, 1000);

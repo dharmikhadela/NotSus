@@ -30,7 +30,15 @@
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        width: 300px;
+        width: 400px;
+    }
+
+    .landing-container h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #ffffff;
+        text-align: left;
+        padding-left: 10px;
     }
 
     .landing-container h2 {
@@ -60,17 +68,97 @@
     .landing-container a.button:hover {
         background-color: #ffb733;
     }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 24px;
+        color: #ffffff;
+        text-align: left;
+        margin: 0;
+        padding-left: 10px;
+        flex: 1;
+    }
+
+    .profile-header input[type="file"] {
+        color: white;
+        background-color: #FFA500;
+        border: none;
+        padding: 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        max-width: 200px;
+    }
 </style>
 {% endblock %}
-
 
 {% block body %}
 <div class="landing-wrapper">
     <div class="landing-container">
+        <div class="profile-header">
+            <div style="display: flex; align-items: center; flex: 1;">
+                <h1 id="username-display">Loading...</h1>
+                <img id="profile-picture" src="" alt="Profile"
+                    style="display: none; width: 40px; height: 40px; border-radius: 50%; margin-left: 10px;">
+            </div>
+            <input type="file" id="profile-upload" accept="image/*">
+        </div>
         <h2>Welcome!</h2>
         <p>You’ve successfully logged in. Ready to jump into action?</p>
         <a class="button" href="/find-lobby">Join Lobby</a>
         <a class="button" href="/logout">Logout</a>
     </div>
 </div>
+
+<script>
+    fetch('/api/me')
+        .then(response => response.json())
+        .then(data => {
+            const usernameDisplay = document.getElementById('username-display');
+            const profileImage = document.getElementById('profile-picture');
+
+            usernameDisplay.textContent = data.username || "Guest";
+
+            if (data.profile_pic) {
+                profileImage.src = `/static/profile_pics/${data.profile_pic}`;
+                profileImage.style.display = 'inline-block';
+            }
+        })
+        .catch(() => {
+            document.getElementById('username-display').textContent = "Guest";
+        });
+
+
+    document.getElementById('profile-upload').addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/profile-pic', {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Profile picture uploaded!');
+                    location.reload(); // reload to show new image
+                } else {
+                    alert('Upload failed: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(err => {
+                alert('Upload error');
+                console.error(err);
+            });
+    });
+</script>
 {% endblock %}
