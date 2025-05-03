@@ -42,6 +42,7 @@
 <div id="timer">01:00</div>
 
 <script type="text/javascript">
+    const spriteCache = {}; // { username: {down, up, left, right} }
     const socket = io();
     let otherUsers = [];
     let lobby_id = null
@@ -53,11 +54,20 @@
         fetch('/api/me')
             .then(res => res.json())
             .then(data => {
+                if (data.profile_pic) {
+                    const profilePath = `/static/profile_pics/${data.profile_pic}`;
+                    setSingleSprite(profilePath);
+                } else {
+                    setPlayerSprites("{{ url_for('static', filename='assets/soldier') }}");
+                }
+
+
                 if (data.lobby_id) {
                     socket.emit('rejoin', { lobby_id: data.lobby_id, username: data.username });
-                    lobby_id = data.lobby_id
+                    lobby_id = data.lobby_id;
                 }
             });
+
     });
 
     socket.on('bullet_fired', function (bullet) {
@@ -67,22 +77,68 @@
     socket.on('update', function (data) {
         otherUsers = data.players
             .filter(p => p.username !== "{{ session['username'] }}")
-            .map(p => ({
-                x: p.x,
-                y: p.y,
-                sprite: playerSprites[p.direction] || playerSprites.down,
-                username: p.username
-            }));
+            .map(p => {
+                // If not already cached, load the sprite
+                if (!spriteCache[p.username]) {
+                    const path = p.profile_pic
+                        ? `/static/profile_pics/${p.profile_pic}`
+                        : "{{ url_for('static', filename='assets/soldier_down.png') }}";
+                    loadAndCropSprite(path, p.username);
+                }
+
+                const sprites = spriteCache[p.username] || playerSprites; // fallback
+                return {
+                    x: p.x,
+                    y: p.y,
+                    sprite: sprites[p.direction] || sprites.down,
+                    username: p.username
+                };
+            });
+
     });
 
 
     socket.on('killed', function (data) {
         alert(`${data.shooter} killed ${data.victim}`);
-        window.location.href = "/scoreboard/"+lobby_id;
+        window.location.href = "/scoreboard/" + lobby_id;
     });
 
     let lastSent = 0;
     const SEND_INTERVAL = 100; // in ms
+
+    function loadAndCropSprite(path, username) {
+        const img = new Image();
+        img.crossOrigin = "anonymous";  // in case of CORS issues
+        img.src = path;
+
+        img.onload = () => {
+            const offCanvas = document.createElement('canvas');
+            const ctx = offCanvas.getContext('2d');
+
+            const cropSize = Math.min(img.width, img.height);
+            const cropX = (img.width - cropSize) / 2;
+            const cropY = (img.height - cropSize) / 2;
+
+            const spriteSize = 64;
+            offCanvas.width = spriteSize;
+            offCanvas.height = spriteSize;
+
+            ctx.imageSmoothingEnabled = false;  // crisp upscaling
+            ctx.drawImage(img, cropX, cropY, cropSize, cropSize, 0, 0, spriteSize, spriteSize);
+
+            const croppedImg = new Image();
+            croppedImg.onload = () => {
+                spriteCache[username] = {
+                    down: croppedImg,
+                    up: croppedImg,
+                    left: croppedImg,
+                    right: croppedImg
+                };
+            };
+            croppedImg.src = offCanvas.toDataURL();
+        };
+    }
+
 
     function sendPosition() {
         const now = Date.now();
@@ -103,17 +159,66 @@
     const bg = new Image();
     bg.src = "{{ url_for('static', filename='assets/forest_bg.jpg') }}";
 
-    const playerSprites = {
+    let playerSprites = {
         down: new Image(),
         up: new Image(),
         left: new Image(),
         right: new Image()
     };
 
-    playerSprites.down.src = "{{ url_for('static', filename='assets/soldier_down.png') }}";
-    playerSprites.up.src = "{{ url_for('static', filename='assets/soldier_up.png') }}";
-    playerSprites.left.src = "{{ url_for('static', filename='assets/soldier_left.png') }}";
-    playerSprites.right.src = "{{ url_for('static', filename='assets/soldier_right.png') }}";
+    const defaultSprites = {
+        down: "{{ url_for('static', filename='assets/soldier_down.png') }}",
+        up: "{{ url_for('static', filename='assets/soldier_up.png') }}",
+        left: "{{ url_for('static', filename='assets/soldier_left.png') }}",
+        right: "{{ url_for('static', filename='assets/soldier_right.png') }}"
+    };
+
+    // LESSSSS GOOOOOOOOO 👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍
+    function setSingleSprite(path) {
+        const img = new Image();
+        img.src = path;
+
+        img.onload = () => {
+            // Create offscreen canvas
+            const offCanvas = document.createElement('canvas');
+            const ctx = offCanvas.getContext('2d');
+
+            // Determine square crop
+            const cropSize = Math.min(img.width, img.height);
+            const cropX = (img.width - cropSize) / 2;
+            const cropY = (img.height - cropSize) / 2;
+
+            // Set desired sprite size (e.g., 64x64)
+            const spriteSize = 256;
+            offCanvas.width = spriteSize;
+            offCanvas.height = spriteSize;
+
+            // Draw cropped and scaled image
+            ctx.drawImage(
+                img,
+                cropX, cropY, cropSize, cropSize, // source crop area
+                0, 0, spriteSize, spriteSize      // destination size
+            );
+
+            const croppedImg = new Image();
+            croppedImg.src = offCanvas.toDataURL();
+
+            playerSprites = {
+                down: croppedImg,
+                up: croppedImg,
+                left: croppedImg,
+                right: croppedImg
+            };
+        };
+    }
+
+
+    function setPlayerSprites(basePath) {
+        playerSprites.down.src = basePath + "_down.png";
+        playerSprites.up.src = basePath + "_up.png";
+        playerSprites.left.src = basePath + "_left.png";
+        playerSprites.right.src = basePath + "_right.png";
+    }
 
     const bulletImg = new Image();
     bulletImg.src = "{{ url_for('static', filename='assets/bullet.png') }}";
@@ -157,7 +262,7 @@
     function countdown() {
         timerEl.textContent = formatTime(seconds);
         if (seconds <= 0) {
-            window.location.href = "/scoreboard/"+lobby_id;
+            window.location.href = "/scoreboard/" + lobby_id;
         } else {
             seconds--;
             setTimeout(countdown, 1000);

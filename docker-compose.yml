@@ -10,8 +10,8 @@ services:
       DOCKER_DB: true
     ports:
       - '8080:5000'
-      - '6789:6789'
     volumes:
       - ./:/app/logs
+      - ./profile_pics:/app/static/profile_pics
     depends_on:
       - mongo

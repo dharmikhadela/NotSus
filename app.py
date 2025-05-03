@@ -6,6 +6,9 @@ from logging.config import dictConfig
 import random
 import re
 import datetime
+import os
+from werkzeug.utils import secure_filename
+from PIL import Image
 
 import bcrypt
 from flask import Flask, redirect, render_template, request, jsonify, session, make_response
@@ -47,6 +50,15 @@ dictConfig({
 app = Flask(__name__)
 app.secret_key = "yoursecretkey"
 socketio = SocketIO(app, cors_allowed_origins=["http://localhost:8080","http://127.0.0.1:8080","https://not-sus.cse312.dev"])
+
+UPLOAD_FOLDER = 'static/profile_pics'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 clients = {}
 rooms = {}
@@ -253,8 +265,8 @@ def get_me():
         user = users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
         if user is not None:
             lobby_id = session.get("lobby_id", None)
-            return jsonify({"username": user["username"], "lobby_id": lobby_id})
-    return jsonify({"username": "NOBODY.", "lobby_id": None})
+            return jsonify({"username": user["username"], "lobby_id": lobby_id, "profile_pic": user.get("profile_pic")})
+    return jsonify({"username": "NOBODY.", "lobby_id": None, "profile_pic": None})
 
 @app.route("/api/scores/<lobby_id>")
 def get_scores(lobby_id):
@@ -284,6 +296,43 @@ def update_winner():
     return jsonify({'message': 'Winner updated'})
 
 
+@app.route('/profile-pic', methods=['POST'])
+def upload_profile_pic():
+    if 'auth_token' not in request.cookies:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    user = users.find_one({"auth_token": hashlib.sha256(request.cookies["auth_token"].encode()).hexdigest()})
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    if file and allowed_file(file.filename):
+        ext = file.filename.rsplit('.', 1)[1].lower()
+        filename = secure_filename(f"{user['username']}.{ext}")
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        # Validate it's a real image
+        try:
+            file.seek(0)
+            image = Image.open(file)
+            image.verify()
+            file.seek(0)
+        except Exception:
+            return jsonify({'error': 'Invalid image file'}), 400
+
+        file.save(filepath)
+
+        users.update_one({"_id": user["_id"]}, {"$set": {"profile_pic": filename}})
+
+        return jsonify({'success': True, 'filename': filename})
+
+    return jsonify({'error': 'Invalid file type'}), 400
 
 @socketio.on('rejoin')
 def handle_rejoin(data):
@@ -402,12 +451,18 @@ def broadcast_state():
     for sid, client in clients.items():
         room_id = client.get("room_id")
         if room_id:
+            # Fetch profile picture from your database (assuming `users` collection has a `profile_pic` field)
+            username = client.get("username")
+            user = users.find_one({"username": username})
+            profile_pic = user.get("profile_pic") if user else None
+
             room_states.setdefault(room_id, []).append({
-                "username": client.get("username"),
+                "username": username,
                 "x": client.get("x"),
                 "y": client.get("y"),
                 "direction": client.get("direction"),
-                "room_id":room_id
+                "room_id": room_id,
+                "profile_pic": profile_pic,  # Add profile picture to player data
             })
 
     for room_id, players in room_states.items():
