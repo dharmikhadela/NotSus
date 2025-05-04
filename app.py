@@ -561,8 +561,21 @@ def on_hit(data):
                 lobbies_collection.update_one({"lobby_id": shooter_room}, {"$push": {"dead": player['username']}})
                 lobbies_collection.update_one({"lobby_id": shooter_room}, {"$pull": {"players": player['username']}})
 
+            update_score(shooter_sid)  # Update the score for the shooter
+            lobby = lobbies_collection.find_one({"lobby_id": shooter_room})
             if len(lobby.get("dead")) == len(lobby.get("all_players")) - 1:
+
+                # Determine the winner
+                all_players = set(lobby.get("all_players", []))
+                dead_players = set(lobby.get("dead", []))
+                alive_players = list(all_players - dead_players)
+                if len(alive_players) == 1:
+                    winner = alive_players[0]
+                    users.update_one({"username": winner}, {"$inc": {"lifetime_wins": 1}})
+                    print(f"Winner {winner} updated with a win.")
+
                 socketio.emit('game_over', to=shooter_room)
+
             try:
                 # Emit kill event with shooter information
                 socketio.emit('killed', {
@@ -577,7 +590,7 @@ def on_hit(data):
             if sid in clients:
                 del clients[sid]
 
-            update_score(shooter_sid)  # Update the score for the shooter
+
             broadcast_state()  # Broadcast the new state
             emit('score_update', to=shooter_room)  # Send updated score to the room
             break
