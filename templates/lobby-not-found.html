@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <title>Find Lobby</title>
+<title>Lobby Not Found</title>
     <style>
-        body {
+    body {
             margin: 0;
             padding: 0;
             background-color: black;
@@ -58,7 +58,6 @@
         }
 
         a.button {
-            margin-top: 30px;
             text-decoration: none;
             font-size: 20px;
             color: #ff9900;
@@ -67,8 +66,7 @@
             border-radius: 8px;
             transition: background-color 0.3s, color 0.3s;
             cursor: pointer;
-            margin-left: 10px;
-            margin-right: 10px;
+            margin:auto;
         }
 
         a.button:hover {
@@ -77,36 +75,10 @@
         }
     </style>
 {% endblock %}
-
 {% block body %}
-    <h1>Lobbies</h1>
-    <div style="display: flex; margin-bottom: 20px; margin-left: 10px;">
-        <a class="button" href="/new" style="display: block; text-align: center;">Create Lobby</a>
-        <a class="button" href="/random" style="display: block; text-align: center;">Join Random</a>
-    </div>
-    <div class="lobbies-container">
-    {% for lobby in lobbies %}
-        <div class="lobby">
-            <div>{{ lobby.lobby_id }}</div>
-            <div>{{ lobby.player_count }}/25</div>
-            <div>
-                <span>Players:</span>
-                <ul>
-                    {% for player in lobby.players_display %}
-                        <li>{{ player }}</li>
-                    {% endfor %}
-                    {% if lobby.extra_count > 0 %}
-                        <li>...and {{ lobby.extra_count }} more</li>
-                    {% endif %}
-                </ul>
-            </div>
-            <a class="button" href="/lobby/{{ lobby.lobby_id }}" style="display: block;text-align: center;">Join Lobby</a>
-        </div>
-    {% else %}
-        <p style="text-align: center;margin: auto;">No lobbies found. Go create one!</p>
-    {% endfor %}
-</div>
-    <div style="text-align: center; margin-top: 40px;">
-        <a class="button" href="/landing">Back to Landing</a>
+    <h1>Lobby Not Found</h1>
+    <p style="text-align: center; margin: auto;">The lobby you are trying to reach has ended, or does not exist.</p>
+    <div style="display: flex; padding-top: 5%;">
+        <a class="button" href="/find-lobby">Return to Lobbies</a>
     </div>
 {% endblock %}

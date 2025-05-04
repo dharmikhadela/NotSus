@@ -174,7 +174,7 @@ def start_game(lobby_id):
         return redirect("/login")
     lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
     if lobby is None:
-        return "Not Found", 404
+        return render_template("lobby-not-found.html"), 404
     return render_template("game.html")
 
 
@@ -257,7 +257,7 @@ def serve_lobby(lobby_id):
         return redirect("/login")
     lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
     if lobby is None:
-        return "Not Found", 404
+        return render_template("lobby-not-found.html"), 404
     return render_template("lobby.html")
 
 @socketio.on('score_update')
