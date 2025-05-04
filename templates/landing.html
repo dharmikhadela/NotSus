@@ -66,8 +66,10 @@
     }
 
     .landing-container a.button:hover {
-        background-color: #ffb733;
-    }
+    background-color: #ffb733;
+    box-shadow: 0 0 15px #ffb733;
+}
+
 
     .profile-header {
         display: flex;
@@ -95,6 +97,15 @@
         font-weight: bold;
         max-width: 200px;
     }
+
+        @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .landing-container a.button {
+        animation: fadeSlideUp 0.6s ease both;
+    }
 </style>
 {% endblock %}
 
@@ -113,6 +124,10 @@
         <p>You’ve successfully logged in. Ready to jump into action?</p>
         <a class="button" href="/find-lobby">Join Lobby</a>
         <a class="button" href="/logout">Logout</a>
+        <a class="button" href="/stats">
+        View Stats
+        </a>
+
     </div>
 </div>
 

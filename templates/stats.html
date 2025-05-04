@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Stats</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ff9900;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 48px;
+        }
+        .stat-box {
+            margin: 20px auto;
+            border: 2px solid #ff9900;
+            width: 300px;
+            padding: 20px;
+            font-size: 24px;
+            background-color: #111;
+        }
+
+            a.button {
+        display: inline-block;
+        background-color: #FFA500;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        margin-top: 40px;
+        transition: background-color 0.2s ease-in-out;
+        font-size: 18px;
+        animation: fadeSlideUp 0.6s ease both;
+    }
+
+    a.button:hover {
+        background-color: #ffb733;
+        box-shadow: 0 0 15px #ffb733;
+    }
+
+    @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Lifetime stats for {{ username }}</h1>
+    <div class="stat-box">Kills: {{ stats.lifetime_kills }}</div>
+    <div class="stat-box">Deaths: {{ stats.lifetime_deaths }}</div>
+    <div class="stat-box">K/D Ratio: {{ stats.kill_death }}</div>
+    <div class="stat-box">Wins: {{ stats.lifetime_wins }}</div>
+    <a class="button" href="/landing">Go Back</a>
+</body>
+</html>

@@ -99,6 +99,10 @@
 
                         usernameCell.innerHTML = (index === 0 ? '🏆 ' : '') + username;
                         scoreCell.textContent = score;
+
+                        if (index === 0) {
+                            declareWinner(username);  // Add this line
+                        }
                     });
                 })
                 .catch(err => {
@@ -158,6 +162,23 @@
                     console.error('Failed to fetch scores', err);
                 });
         });
+
+        function declareWinner(username){
+            fetch('/api/update_winner', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username })
+                    })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Winner updated:', data);
+            })
+            .catch(err => {
+                console.error('Failed to update winner:', err);
+            });
+        }
     </script>
 </body>
 </html>
