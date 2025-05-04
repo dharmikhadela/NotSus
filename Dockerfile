@@ -5,6 +5,7 @@ ENV HOME /root
 WORKDIR /app
 
 RUN touch logs.txt
+RUN touch raw_http.txt
 
 COPY . .
 

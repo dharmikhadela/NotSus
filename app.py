@@ -1,6 +1,7 @@
 import hashlib
 import logging
 import sys
+import traceback
 import uuid
 from logging.config import dictConfig
 import random
@@ -38,14 +39,29 @@ dictConfig({
             'stream': sys.stdout,
             'formatter': 'default',
             'level': 'INFO'
+        },
+        'raw': {
+        'class': 'logging.FileHandler',
+        'filename': '/app/logs/raw_http.txt',
+        'formatter': 'default',
+        'level': 'DEBUG'
         }
     },
+    'loggers': {
+        'raw_logger': {
+            'level': 'DEBUG',
+            'handlers': ['raw'],
+            'propagate': False
+        }
+    }, 
     'root': {
         'level': 'INFO',
         'handlers': ['file', 'console']
     }
-
 })
+
+raw_logger = logging.getLogger('raw_logger')
+
 
 app = Flask(__name__)
 app.secret_key = "yoursecretkey"
@@ -74,9 +90,52 @@ def log_request():
         cookies = headers['Cookie']
         cookies = re.sub(r'auth_token=[^;]+', 'auth_token=<REDACTED>', cookies)
         cookies = re.sub(r'session=[^;]+', 'session=<REDACTED>', cookies)
-
         headers['Cookie'] = cookies
+
+    # General request log
     app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
+
+    # Raw HTTP log
+    if path in ["/login", "/register"]:
+        raw_logger.debug(f"{ip} {method} {path}\nHeaders: {headers}")
+    else:
+        try:
+            body = request.get_data(cache=True)
+            if all(32 <= b <= 126 or b in (9, 10, 13) for b in body[:256]):  # printable
+                body_str = body[:2048].decode(errors='replace')
+                raw_logger.debug(f"{ip} {method} {path}\nHeaders: {headers}\nBody: {body_str}")
+            else:
+                raw_logger.debug(f"{ip} {method} {path}\nHeaders: {headers}\nBody: <binary omitted>")
+        except Exception as e:
+            raw_logger.debug(f"{ip} {method} {path}\nHeaders: {headers}\nBody: <error reading body>")
+
+
+@app.after_request
+def log_response(response):
+    ip = request.headers.get('X-Real-IP', request.remote_addr)
+    user = authenticate(request)
+    username = user.get("username") if user else "Unauthenticated"
+    status = response.status_code
+    method = request.method
+    path = request.path
+    app.logger.info(f"{ip} | {username} | {method} {path} | Response: {status}")
+
+    try:
+        headers = dict(response.headers)
+        if 'Set-Cookie' in headers:
+            headers['Set-Cookie'] = re.sub(r'auth_token=[^;]+', 'auth_token=<REDACTED>', headers['Set-Cookie'])
+
+        body = response.get_data()
+        if all(32 <= b <= 126 or b in (9, 10, 13) for b in body[:256]):
+            body_str = body[:2048].decode(errors='replace')
+            raw_logger.debug(f"{ip} RESPONSE {status} {path}\nHeaders: {headers}\nBody: {body_str}")
+        else:
+            raw_logger.debug(f"{ip} RESPONSE {status} {path}\nHeaders: {headers}\nBody: <binary omitted>")
+    except Exception as e:
+        raw_logger.debug(f"{ip} RESPONSE {status} {path}\n<error capturing response>")
+
+    return response
+
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -637,4 +696,8 @@ def update_stats_on_death(killed_user):
 
 #Use this for development, if required.
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", port=5000, allow_unsafe_werkzeug=True)
+    try:
+        socketio.run(app, host="0.0.0.0", port=5000, allow_unsafe_werkzeug=True)
+    except Exception as e:
+        app.logger.exception("Unhandled exception occurred: %s", traceback.format_exc())
+
