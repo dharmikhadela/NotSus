@@ -197,8 +197,23 @@ def scoreboard(lobby_id):
 
     return render_template("scoreboard.html")
 
+
 @app.route("/find-lobby", methods=["GET"])
-def find_lobby():
+def serve_find_lobby():
+    all_lobbies = list(lobbies_collection.find({"started": False}))
+    for lobby in all_lobbies:
+        lobby["players"] = lobby.get("players", [])
+        lobby["player_count"] = len(lobby["players"])
+        if lobby["player_count"] > 4:
+            lobby["extra_count"] = lobby["player_count"] - 4
+            lobby["players_display"] = lobby["players"][:4]
+        else:
+            lobby["extra_count"] = 0
+            lobby["players_display"] = lobby["players"]
+    return render_template("find-lobbies.html", lobbies=all_lobbies)
+
+@app.route("/random")
+def find_random_lobby():
     user = authenticate(request)
     if user is not None:
         session["username"] = authenticate(request)["username"]
@@ -209,9 +224,19 @@ def find_lobby():
     for lobby in lobbies:
         if len(lobby["players"]) <= 25:
             return redirect("/lobby/" + lobby["lobby_id"])
-    lobby_id = str(uuid.uuid1())
-    lobbies_collection.insert_one({"lobby_id":lobby_id, "players":[], "started": False, "created_at":datetime.datetime.now(datetime.UTC)})
+    lobby_id = create_lobby()
     return redirect("/lobby/" + lobby_id)
+
+@app.route("/new")
+def new_lobby():
+    lobby_id = create_lobby()
+    return redirect("/lobby/" + lobby_id)
+
+def create_lobby():
+    lobby_id = str(uuid.uuid1())
+    lobbies_collection.insert_one(
+        {"lobby_id": lobby_id, "players": [], "all_players": [], "dead": [], "scores": {}, "started": False, "created_at": datetime.datetime.now(datetime.UTC)})
+    return lobby_id
 
 
 @app.route("/lobby/<lobby_id>")
@@ -219,6 +244,7 @@ def serve_lobby(lobby_id):
     if authenticate(request) is not None:
         session["username"] = authenticate(request)["username"]
         session["lobby_id"] = lobby_id
+        print(f"{session["username"]}, {session["lobby_id"]}")
     else:
         return redirect("/login")
     lobby = lobbies_collection.find_one({"lobby_id": lobby_id})
@@ -228,6 +254,9 @@ def serve_lobby(lobby_id):
 
 @socketio.on('score_update')
 def send_score_update(data):
+    lobby = lobbies_collection.find_one({"lobby_id":data["lobby_id"]})
+    if len(lobby.get("dead")) == len(lobby.get("all_players")) - 1:
+        socketio.emit('game_over', to=data["lobby_id"])
     emit('score_update', to=data["lobby_id"])
 
 @socketio.on('join_lobby')
@@ -243,6 +272,11 @@ def handle_join_lobby(data):
 
 
     lobbies_collection.update_one({"lobby_id":room_id},{"$push":{"players":username}})
+    lobbies_collection.update_one({"lobby_id": room_id}, {"$push": {"all_players": username}})
+    lobbies_collection.update_one(
+        {"lobby_id": room_id},
+        {"$set": {f"scores.{username}": 0}}
+    )
 
     rooms[room_id].append(username)
     clients[request.sid] = {
@@ -273,12 +307,8 @@ def get_scores(lobby_id):
     lobby = lobbies_collection.find_one({"lobby_id":lobby_id})
     if lobby is None:
         return jsonify({"players": {}})
-    players = {}
-    players_list = lobby.get("players")
-    for player in players_list:
-        user = users.find_one({"username":player})
-        players[player] = user.get("score")
-    return jsonify({"players":players})
+    scores = lobby.get("scores")
+    return jsonify({"players":scores})
 
 @app.route('/api/update_winner', methods=['POST'])
 def update_winner():
@@ -367,7 +397,7 @@ def handle_rejoin(data):
     emit('user_joined', username, to=lobby_id)
     lobby = lobbies_collection.find_one({"lobby_id":lobby_id})
     if lobby is not None:
-        if username not in lobby.get("players"):
+        if username not in lobby.get("players") and username not in lobby.get("dead"):
             lobbies_collection.update_one({"lobby_id": lobby_id}, {"$push": {"players": username}})
         app.logger.info(f"User {username} rejoined room {lobby_id}")
     else:
@@ -380,26 +410,50 @@ def on_connect():
 
 @socketio.on('disconnect')
 def on_disconnect():
+    sid = request.sid
+    print(f"Client disconnected: {sid}")
+
+    if sid not in clients:
+        print(f"SID {sid} not found in clients. Skipping cleanup.")
+        return
+
+    client_data = clients[sid]
+    username = client_data.get("username")
+    print(f"Disconnecting user: {username}")
+    print(f"All rooms: {rooms.items()}")
+
+    for room_id in list(rooms.keys()):
+        users = rooms.get(room_id, [])
+        print(f"Checking room: {room_id} with users: {users}")
+
+        lobby = lobbies_collection.find_one({"lobby_id": room_id})
+        if not lobby:
+            print(f"No lobby found in DB for room {room_id}. Skipping.")
+            continue
+
+        if username in lobby.get("players", []):
+            print(f"{username} is in lobby {room_id}, removing...")
+            update_ops = [{"$pull": {"players": username}}]
+
+            for op in update_ops:
+                lobbies_collection.update_one({"lobby_id": room_id}, op)
+
+            emit('user_left', username, to=room_id)
+
+            updated_lobby = lobbies_collection.find_one({"lobby_id": room_id})
+            if updated_lobby and not updated_lobby.get("started") and len(updated_lobby.get("players", [])) == 0:
+                lobbies_collection.find_one_and_delete({"lobby_id": room_id})
+                print(f"Lobby {room_id} deleted because it's empty and not started.")
+
+        if username in users:
+            users.remove(username)
+            leave_room(room_id)
+            print(f"{username} removed from in-memory room {room_id}")
+
+    del clients[sid]
     broadcast_state()
-    print(f"Client disconnected: {request.sid}")
-    for room_id, users in rooms.items():
-        # Check if the user was in the room (by matching the session ID)
-        for username in users:
-            # You can add custom logic to match the user with request.sid (session ID)
-            # Here, we'll assume you know which user is connected to which sid
+    print(f"Cleanup complete for SID: {sid}")
 
-            # If the user is found, remove them from the room
-            if username == clients[request.sid]["username"]:  # You would match based on session/user info
-                users.remove(username)
-                leave_room(room_id)
-                # lobbies_collection.update_one({"lobby_id": room_id}, {"$pull": {"players": username}})
-                print(f"{username} has left room {room_id}.")
-
-                # Notify everyone in the room that the user has left
-                emit('user_left', username, to=room_id)
-                break
-    if request.sid in clients:
-        del clients[request.sid]
 
 @socketio.on('init')
 def on_init(data):
@@ -423,17 +477,25 @@ def on_hit(data):
     shooter_room = clients[shooter_sid].get("room_id")
 
     for sid, player in list(clients.items()):
+        lobby = lobbies_collection.find_one({"lobby_id": shooter_room})
         if player.get("username") == data.get("shooter"):
             continue  # Don't allow shooting yourself
         if sid == shooter_sid:
             continue
         if player.get("room_id") != shooter_room:
             continue  # Only allow hits within the same room
-
+        if player.get("username") in lobby.get("dead"):
+            continue
         px = player["x"]
         py = player["y"]
 
         if abs(px - hit_x) < 25 and abs(py - hit_y) < 25:
+            if player.get("username") not in lobby.get("dead"):
+                lobbies_collection.update_one({"lobby_id": shooter_room}, {"$push": {"dead": player['username']}})
+                lobbies_collection.update_one({"lobby_id": shooter_room}, {"$pull": {"players": player['username']}})
+
+            if len(lobby.get("dead")) == len(lobby.get("all_players")) - 1:
+                socketio.emit('game_over', to=shooter_room)
             try:
                 # Emit kill event with shooter information
                 socketio.emit('killed', {
@@ -485,6 +547,7 @@ def broadcast_state():
                 "profile_pic": profile_pic,  # Add profile picture to player data
             })
 
+
     for room_id, players in room_states.items():
         print(room_id)
         print(players)
@@ -494,23 +557,48 @@ def broadcast_state():
 def update_score(sid):
     client = clients.get(sid)
     if not client:
+        print(f"update_score: No client found for sid {sid}")
         return
+
     username = client.get("username")
-    if username:
-        player_stats = users.find_one({"username": username})
-        kills = player_stats.get("lifetime_kills") + 1
-        deaths = player_stats.get("lifetime_deaths")
-        if deaths == 0.0:
-            kd = float(kills)
-        else:
-            kd = kills / deaths
+    room_id = client.get("room_id")
+    if not username or not room_id:
+        print(f"update_score: Missing username or room_id for sid {sid}")
+        return
+
+    # --- Global stat update ---
+    player_stats = users.find_one({"username": username})
+    if player_stats:
+        kills = player_stats.get("lifetime_kills", 0) + 1
+        deaths = player_stats.get("lifetime_deaths", 0)
+        kd = kills / deaths if deaths > 0 else float(kills)
 
         users.update_one(
             {"username": username},
-            {"$inc": {"score": 1, "lifetime_kills": 1},
-             "$set": {"kill_death": kd}}
+            {
+                "$inc": {"score": 1, "lifetime_kills": 1},
+                "$set": {"kill_death": kd}
+            }
         )
+        print(f"Global stats updated for {username}: kills={kills}, kd={kd}")
+    else:
+        print(f"update_score: Could not find user {username} in users collection")
 
+    # --- Lobby-specific score update ---
+    lobby = lobbies_collection.find_one({"lobby_id": room_id})
+    if not lobby:
+        print(f"update_score: No lobby found with id {room_id}")
+        return
+
+    current_scores = lobby.get("scores", {})
+    new_score = current_scores.get(username, 0) + 1
+
+    lobbies_collection.update_one(
+        {"lobby_id": room_id},
+        {"$set": {f"scores.{username}": new_score}}
+    )
+
+    print(f"Lobby score updated: {username} = {new_score}")
 
 def authenticate(request):
     if "auth_token" in request.cookies:
