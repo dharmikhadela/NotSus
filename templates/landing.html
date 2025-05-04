@@ -67,9 +67,9 @@
     }
 
     .landing-container a.button:hover {
-    background-color: #ffb733;
-    box-shadow: 0 0 15px #ffb733;
-}
+        background-color: #ffb733;
+        box-shadow: 0 0 15px #ffb733;
+    }
 
 
     .profile-header {
@@ -99,9 +99,16 @@
         max-width: 200px;
     }
 
-        @keyframes fadeSlideUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .landing-container a.button {
@@ -123,12 +130,16 @@
         </div>
         <h2>Welcome!</h2>
         <p>You’ve successfully logged in. Ready to jump into action?</p>
-        <div style="display: flex;max-width: inherit;flex-wrap: wrap;">
+        <div style="display: flex;max-width: inherit;flex-wrap: wrap;justify-content: center;">
             <a class="button" href="/find-lobby">Find Game</a>
             <a class="button" href="/random">Random Game</a>
             <a class="button" href="/logout">Logout</a>
             <a class="button" href="/stats">View Stats</a>
         </div>
+        <div style="margin-top: 10px;">
+            <a class="button" href="/leaderboard">Leaderboard</a>
+        </div>
+
     </div>
 </div>
 

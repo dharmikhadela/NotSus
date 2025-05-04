@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard - NotSus</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ff9900;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-collapse: collapse;
+            border: 2px solid #ff9900;
+            width: 60%;
+            margin: 0 auto;
+            box-shadow: 0 0 20px black;
+        }
+
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid #ff9900;
+            font-size: 22px;
+        }
+
+        th {
+            background-color: #111;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 153, 0, 0.1);
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 40px;
+            background-color: #FFA500;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        a.button:hover {
+            background-color: #ffb733;
+            box-shadow: 0 0 15px #ffb733;
+        }
+    </style>
+</head>
+<body>
+    <h1>Global Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Kills</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.kills }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="button" href="/landing">Back to Lobby</a>
+</body>
+</html>
+

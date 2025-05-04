@@ -14,7 +14,7 @@ import bcrypt
 from flask import Flask, redirect, render_template, request, jsonify, session, make_response
 from flask_socketio import SocketIO, disconnect, join_room, emit, leave_room
 from api.db import users, lobbies_collection
-
+from pymongo import DESCENDING
 #Setting up logging details.
 dictConfig({
     'version': 1,
@@ -77,6 +77,14 @@ def log_request():
 
         headers['Cookie'] = cookies
     app.logger.info(f"{ip} {method} {path} | Headers: {headers}")
+
+@app.route('/leaderboard')
+def leaderboard():
+    user_list = list(users.find({}, {"username": 1, "lifetime_kills": 1, "_id": 0}).sort("lifetime_kills", DESCENDING))
+    # Rename field for use in template
+    for user in user_list:
+        user["kills"] = user.get("lifetime_kills", 0)
+    return render_template('leaderboard.html', users=user_list)
 
 
 @app.route('/register', methods=['POST'])
