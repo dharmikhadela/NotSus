@@ -334,6 +334,26 @@ def upload_profile_pic():
 
     return jsonify({'error': 'Invalid file type'}), 400
 
+@app.route("/stats")
+def view_stats():
+    user = authenticate(request)
+    if user is None:
+        return redirect("/login")
+    username = user.get("username")
+    data = users.find_one({"username": username})
+    if not data:
+        return "User not found", 404
+
+    stats = {
+        "score": data.get("score", 0),
+        "lifetime_kills": data.get("lifetime_kills", 0),
+        "lifetime_deaths": data.get("lifetime_deaths", 0),
+        "lifetime_wins": data.get("lifetime_wins", 0),
+        "kill_death": round(data.get("kill_death", 0.0), 2)
+    }
+    return render_template("stats.html", username=username, stats=stats)
+
+
 @socketio.on('rejoin')
 def handle_rejoin(data):
     lobby_id = data.get('lobby_id')
